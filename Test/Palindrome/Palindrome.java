@@ -2,7 +2,7 @@ public class Palindrome {
 
     public static void main(String[] args) {
 
-        isPalindrome("hello world");
+        System.out.println(isPalindrome("lol"));
 
     }
 
@@ -22,12 +22,13 @@ public class Palindrome {
     public static boolean isPalindrome(String s, int low, int high) {
 
         // base case
-        if (high <= low) {
+        if (high <= low) { // Check to see if we checked all characters in the string
             return true;
-        } else if (s.charAt(low) != s.charAt(high)) {
+        } else if (s.charAt(low) != s.charAt(high)) { // Check the characters at both ends of the strings
             return false;
         } else {
-            return isPalindrome(s, low + 1, high - 1);
+            // recursive call
+            return isPalindrome(s, low + 1, high - 1); // Decrese the scope for the next check
         }
     }
 }

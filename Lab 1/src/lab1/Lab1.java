@@ -66,19 +66,14 @@ public class Lab1 {
 
     public static void selectionSort(double[] list) {
 
-        for (int i = 0; i < list.length - 1; i++) {
-            double currentMin = list[i];
-            int currentMinIndex = i;
-
-            for (int j = i + 1; j < list.length; j++) {
-                while (currentMin > list[j]) {
-                    currentMin = list[j];
-                    currentMinIndex = j;
+        for (int i = 0; i < list.length; i++) { // For every element in the list
+            for (int j = i; j < list.length; j++) { // Find every subsequent element
+                if (list[j] < list[i]) { // And if any of those subsequent elements are less then the current element
+                    /*swap v*/
+                    double temp = list[j]; // Swap their values and continue
+                    list[j] = list[i]; // Swapping values
+                    list[i] = temp;
                 }
-            }
-            if (currentMinIndex != i) {
-                list[currentMinIndex] = list[i];
-                list[i] = currentMin;
             }
         }
     }

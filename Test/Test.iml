@@ -9,6 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Testing" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Palindrome" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Selection Sort" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/Binary Search" isTestSource="true" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
