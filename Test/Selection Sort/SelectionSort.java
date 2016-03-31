@@ -2,16 +2,8 @@ public class SelectionSort {
 
     public static void main(String[] args) {
 
-        double[] list;
+        double[] list = {10, 1, 5, 6, 2, 4, 7};
         list = new double[7];
-
-        list[0] = 10;
-        list[1] = 1;
-        list[2] = 5;
-        list[3] = 6;
-        list[4] = 2;
-        list[5] = 4;
-        list[6] = 7;
 
         sort(list, 0, 6);
 

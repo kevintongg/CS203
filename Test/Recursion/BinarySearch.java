@@ -4,7 +4,8 @@ public class BinarySearch {
 
         double list[] = {7, 9, 10, 15, 20, 25};
 
-        System.out.println(binarySearch(list, 15));
+        binarySearch(list, 15);
+
     }
 
     public static int binarySearch(double[] list, double key) {
