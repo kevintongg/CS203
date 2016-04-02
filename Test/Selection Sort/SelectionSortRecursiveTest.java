@@ -13,18 +13,20 @@ public class SelectionSortRecursiveTest {
 
     public static void recursiveSelectionSort(double[] list, int start) {
 
-        if (start == list.length) { // Have we sorted all the elements
+        if (start == list.length) { // Are all the elements sorted?
             return;
         }
-        double currentValue = list[start]; // Make a copy of our value
-        for (int i = start; i < list.length; i++) {
-            if (list[i] < currentValue) { // Find the next smallest value
-                list[start] = list[i]; // Swap values at the indexes
-                list[i] = currentValue;
-                recursiveSelectionSort(list, start + 1); // Start sorting from the next point; might be able to get away with using i instead of start
-                return;
+        int smallest = start;
+        for (int i = smallest + 1; i < list.length; i++) { // Start after the start value
+            if (list[smallest] > list[i]) { // Find the smallest integer
+                smallest = i;
             }
         }
 
+        double temp = list[smallest]; // Swap
+        list[smallest] = list[start];
+        list[start] = temp;
+
+        recursiveSelectionSort(list, start + 1); /// Move on
     }
 }
