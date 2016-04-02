@@ -19,20 +19,10 @@ public class Lab1 {
         *
         * */
 
-        double[] list = {1, 23, 4, 7, 11, 10, 13, 19, 3, 94};
-
-        System.out.println("1.0 First reverse display:");
-        reverseDisplay1(5);
-        System.out.println("1.1 Second reverse display:");
-        reverseDisplay2(123450);
-        System.out.println("\n2. Reverse string:");
-        reverseStringDisplay("!niveK si eman ym ,olleH");
-        System.out.println("Selection Sort:");
-        selectionSort(list);
-        System.out.println(Arrays.toString(list));
-        int x = binarySearch(list, 23);
-        System.out.println("Binary Search:");
-        System.out.println("The index of our key is " + x + ".");
+        System.out.println("Main Lab:");
+        System.out.println();
+        mainLab();
+        System.out.println("Extra Credit:");
         extraCredit();
 
     }
@@ -42,7 +32,7 @@ public class Lab1 {
         if (value == 0) {
             System.out.println(0);
         } else {
-            System.out.println(value);
+            System.out.print(value + ", ");
             reverseDisplay1(value - 1);
         }
     }
@@ -51,7 +41,7 @@ public class Lab1 {
 
         if (value <= 0) {
         } else {
-            System.out.print(value % 10);
+            System.out.print(value % 10 + " ");
             reverseDisplay2(value / 10);
         }
     }
@@ -83,20 +73,42 @@ public class Lab1 {
 
     public static int binarySearch(double[] list, int key) {
 
-        int low = 0;
-        int high = list.length - 1;
-
-        while (high >= low) {
-            int mid = (low + high) / 2;
-            if (key < list[mid]) {
-                high = mid - 1;
-            } else if (key == list[mid]) {
+        int mid = list.length / 2;
+        while (mid > 0 && mid < list.length) {
+            if (list[mid] == key) {
                 return mid;
+            } else if (list[mid] < key) {
+                mid = list.length - ((list.length - (mid - 1)) / 2);
             } else {
-                low = mid + 1;
+                mid = list.length - ((list.length - (mid + 1)) / 2);
             }
         }
         return -1;
+    }
+
+    public static void mainLab() {
+
+        double[] list = {4, 23, 1, 7, 11, 10, 13, 19, 3, 94};
+
+        System.out.println("1.0 First reverse display:");
+        reverseDisplay1(5);
+        System.out.println();
+        System.out.println("1.1 Second reverse display:");
+        reverseDisplay2(123450);
+        System.out.println();
+        System.out.println("\n2. Reverse string:");
+        reverseStringDisplay("!niveK si eman ym ,olleH");
+        System.out.println();
+        System.out.println("\nSelection Sort:");
+        System.out.println("Before:");
+        System.out.println(Arrays.toString(list));
+        selectionSort(list);
+        System.out.println("After:");
+        System.out.println(Arrays.toString(list) + "\n");
+        int x = binarySearch(list, 23);
+        System.out.println("Binary Search:");
+        System.out.println("The index of our key is " + x + ".\n");
+
     }
 
     public static void extraCredit() {
@@ -108,20 +120,20 @@ public class Lab1 {
         double ec2 = Double.parseDouble(decimalFormat.format(extraCredit18_5(10)));
         double ec3 = Double.parseDouble(decimalFormat.format(extraCredit18_6(10)));
 
-        System.out.println("Extra Credit 18.4:");
-        System.out.println(ec1);
-        System.out.println("Extra Credit 18.4:");
-        System.out.println(ec2);
-        System.out.println("Extra Credit 18.5:");
-        System.out.println(ec3);
-        System.out.println("Extra Credit 18.10:");
+        System.out.println("\nExtra Credit 18.4:");
+        System.out.println("The sum of the series is: " + ec1);
+        System.out.println("\nExtra Credit 18.4:");
+        System.out.println("The sum of the series is: " + ec2);
+        System.out.println("\nExtra Credit 18.5:");
+        System.out.println("The sum of the series is: " + ec3);
+        System.out.println("\nExtra Credit 18.10:");
         System.out.println("Please enter a string.");
         String s = sc.next();
         System.out.println("Please enter the character you want to find the number of occurrences for:");
         char c = sc.next().charAt(0);
         System.out.println(extraCredit18_10(s, c));
-        System.out.println("Extra Credit 18.11:");
-        System.out.println("Please enter a number:");
+        System.out.println("\nExtra Credit 18.11:");
+        System.out.println("Please enter an integer:");
         long l = sc.nextInt();
         System.out.println(extraCredit18_11(l));
 
@@ -176,11 +188,5 @@ public class Lab1 {
         } else {
             return (n % 10) + extraCredit18_11(n / 10);
         }
-    }
-
-    public static int extraCredit18_13(int[] list, int start) {
-
-//        if (start)
-        return start;
     }
 }

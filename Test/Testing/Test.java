@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Test {
 
     /*
@@ -35,6 +38,8 @@ public class Test {
     }
 
     * */
+
+    List<Double> list = new ArrayList<>();
 
     public static void main(String[] args) {
         System.out.println(factorial(3));
