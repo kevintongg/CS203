@@ -62,8 +62,6 @@ public class HTree extends Application {
      */
     static class HTreePane extends Pane {
 
-        BorderPane borderPane = new BorderPane();
-
         double x = 500;
         double y = 500;
         private int orderNum = 0;
@@ -72,7 +70,7 @@ public class HTree extends Application {
 
         }
 
-        /*
+        /**
          * Set a new order
          */
         public void setOrder(int orderNum) {
@@ -90,18 +88,18 @@ public class HTree extends Application {
             makeLine(orderNum, new Point2D(x / 4, y / 2), new Point2D(x * .75, y / 2));
         }
 
-        private void makeLine(int orderNum, Point2D p1, Point2D p2) {
-            if (orderNum > 0) {
+        private void makeLine(int order, Point2D p1, Point2D p2) {
+            if (order >= 0) {
                 Line line = new Line(p1.getX(), p1.getY(), p2.getX(), p2.getY());
                 this.getChildren().add(line);
                 // top left square	(200x200)
-                makeLine(orderNum - 1, new Point2D(p1.getX() / 2, p1.getY() / 2), new Point2D(p2.getX() / 2, p2.getY() / 2));
+                makeLine(order - 1, new Point2D(p1.getX() / 2, p1.getY() / 2), new Point2D(p2.getX() / 2, p2.getY() / 2));
                 // top right square (400x200)
-                makeLine(orderNum - 1, new Point2D(x / 2 + p1.getX() / 2, y * 0 + p1.getY() / 2), new Point2D(p2.getX() / 2 + x / 2, p2.getY() / 2));
+                makeLine(order - 1, new Point2D(x / 2 + p1.getX() / 2, y * 0 + p1.getY() / 2), new Point2D(p2.getX() / 2 + x / 2, p2.getY() / 2));
                 // bottom left square (200x400)
-                makeLine(orderNum - 1, new Point2D(p1.getX() / 2, y / 2 + p1.getY() / 2), new Point2D(p2.getX() / 2, y / 2 + p2.getY() / 2));
-                // bottom right square (
-                makeLine(orderNum - 1, new Point2D(x / 2 + p1.getX() / 2, y / 2 + p1.getY() / 2), new Point2D(x / 2 + p2.getX() / 2, y / 2 + p2.getY() / 2));
+                makeLine(order - 1, new Point2D(p1.getX() / 2, y / 2 + p1.getY() / 2), new Point2D(p2.getX() / 2, y / 2 + p2.getY() / 2));
+                // bottom right square (400x200)
+                makeLine(order - 1, new Point2D(x / 2 + p1.getX() / 2, y / 2 + p1.getY() / 2), new Point2D(x / 2 + p2.getX() / 2, y / 2 + p2.getY() / 2));
             }
         }
     }
