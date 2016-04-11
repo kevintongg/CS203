@@ -1,5 +1,6 @@
+package htree;
+
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,9 +13,9 @@ import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 
-public class ShoreLine extends Application {
+public class HTree extends Application {
 
-    ShoreLinePane shorelinePane = new ShoreLinePane();
+    HTreePane treePane = new HTreePane();
     TextField tfOrder = new TextField();
 
     /**
@@ -28,10 +29,10 @@ public class ShoreLine extends Application {
     @Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
 
-//		    tfOrder.setOnAction(
-//		      e ->  shorelinePane.setOrder(Integer.parseInt(tfOrder.getText())));
-
-        tfOrder.setOnAction(this::setMyOrder);
+        tfOrder.setOnAction(event -> {
+            treePane.setOrder(Integer.parseInt(tfOrder.getText()));
+            tfOrder.setText("");
+        });
 
         tfOrder.setPrefColumnCount(4);
         tfOrder.setAlignment(Pos.BOTTOM_RIGHT);
@@ -43,32 +44,26 @@ public class ShoreLine extends Application {
         hBox.setAlignment(Pos.CENTER);
 
         BorderPane borderPane = new BorderPane();
-        borderPane.setCenter(shorelinePane);
+        borderPane.setCenter(treePane);
         borderPane.setBottom(hBox);
 
         // Create a scene and place it in the stage
         Scene scene = new Scene(borderPane, 400, 410);
-        primaryStage.setTitle("Shoreline Paradox"); // Set the stage title
+        primaryStage.setTitle("H-Tree Fractal"); // Set the stage title
         primaryStage.setScene(scene); // Place the scene in the stage
         primaryStage.show(); // Display the stage
 
-        scene.widthProperty().addListener(ov -> shorelinePane.paint());
-        scene.heightProperty().addListener(ov -> shorelinePane.paint());
-    }
-
-    public void setMyOrder(ActionEvent e) {
-        shorelinePane.setOrder(Integer.parseInt(tfOrder.getText()));
-        tfOrder.setText("");
-
+        scene.widthProperty().addListener(ov -> treePane.paint());
+        scene.heightProperty().addListener(ov -> treePane.paint());
     }
 
     /**
      * Pane for displaying fractal
      */
-    static class ShoreLinePane extends Pane {
+    static class HTreePane extends Pane {
         private int order = 0;
 
-        ShoreLinePane() {
+        HTreePane() {
         }
 
         /**
@@ -82,10 +77,10 @@ public class ShoreLine extends Application {
         protected void paint() {
             this.getChildren().clear();
             //using unit 1 as 1/3 of width
-            displayShoreLine(order, this.getWidth(), new Point2D(0, 0));
+            displayHTree(order, this.getWidth(), new Point2D(0, 0));
         }
 
-        private void displayShoreLine(int order, double side, Point2D p) {
+        private void displayHTree(int order, double side, Point2D p) {
 
             double x = p.getX();
             double y = p.getY();
@@ -93,8 +88,8 @@ public class ShoreLine extends Application {
 
             if (order > 0) {
                 // Recursively display shoreline
-                displayShoreLine(order - 1, side2, new Point2D(x + side2, y));
-                displayShoreLine(order - 1, side2, new Point2D(x, y + side2));
+                displayHTree(order - 1, side2, new Point2D(x + side2, y));
+                displayHTree(order - 1, side2, new Point2D(x, y + side2));
             } else {
                 //draw shoreline
                 this.getChildren().add(new Line(x, y + side, x + side / 2, y + side));

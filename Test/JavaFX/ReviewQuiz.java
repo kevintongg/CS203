@@ -158,25 +158,25 @@ public class ReviewQuiz extends Application {
                 if (checkBox[2].isSelected()) {
                     text.setFont(Font.font((text.getFont()).getName(), FontWeight.BOLD, FontPosture.ITALIC, text.getFont().getSize()));
                     text.setUnderline(true);
-                }
-            } else {
-                text.setFont(Font.font((text.getFont()).getName(), FontWeight.BOLD, text.getFont().getSize()));
-                text.setUnderline(false);
-            }
-        } else if (checkBox[1].isSelected()) {
-            if (checkBox[1].isSelected()) {
-                if (checkBox[2].isSelected()) {
-                    text.setFont(Font.font((text.getFont()).getName(), FontPosture.ITALIC, text.getFont().getSize()));
-                    text.setUnderline(true);
                 } else {
-                    text.setFont(Font.font((text.getFont()).getName(), FontWeight.NORMAL, FontPosture.REGULAR, text.getFont().getSize()));
+                    text.setFont(Font.font((text.getFont()).getName(), FontWeight.BOLD, text.getFont().getSize()));
                     text.setUnderline(false);
                 }
+            } else {
+            }
+        } else if (checkBox[1].isSelected()) {
+            if (checkBox[2].isSelected()) {
+                text.setFont(Font.font((text.getFont()).getName(), FontPosture.ITALIC, text.getFont().getSize()));
+                text.setUnderline(true);
+            } else {
+                text.setFont(Font.font((text.getFont()).getName(), FontWeight.NORMAL, FontPosture.REGULAR, text.getFont().getSize()));
+                text.setUnderline(false);
             }
         } else {
             if (checkBox[2].isSelected()) {
                 text.setUnderline(true);
             } else {
+                text.setFont(Font.font((text.getFont()).getName(), FontWeight.NORMAL, FontPosture.REGULAR, text.getFont().getSize()));
                 text.setUnderline(false);
             }
         }
