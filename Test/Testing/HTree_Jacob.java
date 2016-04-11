@@ -24,10 +24,7 @@ public class HTree_Jacob extends Application {
     public void start(Stage primaryStage) {
         HTreePane treePane = new HTreePane();
         TextField tfOrder = new TextField();
-        tfOrder.setOnAction(e -> {
-            treePane.setOrder(Integer.parseInt(tfOrder.getText()));
-            tfOrder.setText("");
-        });
+        tfOrder.setOnAction(e -> treePane.setOrder(Integer.parseInt(tfOrder.getText())));
         tfOrder.setPrefColumnCount(4);
         tfOrder.setAlignment(Pos.BOTTOM_RIGHT);
 
@@ -54,9 +51,7 @@ public class HTree_Jacob extends Application {
      * Pane for displaying fractal
      */
     static class HTreePane extends Pane {
-
         private int order = 0;
-
 
         HTreePane() {
         }
@@ -95,16 +90,21 @@ public class HTree_Jacob extends Application {
             // Homework 2: Please implement the rest of method
             if (order == 0) {
                 Line line = new Line(x - side / 2, y, x + side / 2, y);
-                Line line2 = new Line(x - side / 2, y - side / 2, x - side / 2, y + side / 2);
-                Line line3 = new Line(x + side / 2, y - side / 2, x + side / 2, y + side / 2);
+                Line line2 = new Line(x - side / 2, y - side / 2, x - side / 2,
+                        y + side / 2);
+                Line line3 = new Line(x + side / 2, y - side / 2, x + side / 2,
+                        y + side / 2);
                 this.getChildren().add(line);
                 this.getChildren().add(line2);
                 this.getChildren().add(line3);
 
             } else {
-                Line line = new Line(x - side / 2, y, x + side / 2, y);
-                Line line2 = new Line(x - side / 2, y - side / 2, x - side / 2, y + side / 2);
-                Line line3 = new Line(x + side / 2, y - side / 2, x + side / 2, y + side / 2);
+                Line line = new Line(x - side / 2, y,
+                        x + side / 2, y);
+                Line line2 = new Line(x - side / 2, y - side / 2, x - side / 2,
+                        y + side / 2);
+                Line line3 = new Line(x + side / 2, y - side / 2, x + side / 2,
+                        y + side / 2);
                 this.getChildren().add(line);
                 this.getChildren().add(line2);
                 this.getChildren().add(line3);
