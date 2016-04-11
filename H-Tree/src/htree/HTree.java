@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -40,7 +41,9 @@ public class HTree extends Application {
         // Pane to hold label, text field, and a button
         HBox hBox = new HBox(10);
         Label label = new Label("Enter an order number: ");
-        hBox.getChildren().addAll(label, tfOrder);
+        Button button = new Button("_Clear Window");
+        button.setMnemonicParsing(true);
+        hBox.getChildren().addAll(label, tfOrder, button);
         hBox.setAlignment(Pos.CENTER);
 
         BorderPane borderPane = new BorderPane();
@@ -55,6 +58,11 @@ public class HTree extends Application {
 
         scene.widthProperty().addListener(ov -> treePane.paint());
         scene.heightProperty().addListener(ov -> treePane.paint());
+        button.setOnAction(event -> {
+            treePane.clear();
+            tfOrder.setText("");
+            tfOrder.requestFocus();
+        });
     }
 
     /**
@@ -76,6 +84,10 @@ public class HTree extends Application {
         public void setOrder(int orderNum) {
             this.orderNum = orderNum;
             paint();
+        }
+
+        void clear() {
+            this.getChildren().clear();
         }
 
         protected void paint() {
