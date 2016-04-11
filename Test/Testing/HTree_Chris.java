@@ -55,17 +55,13 @@ public class HTree_Chris extends Application {
     }
 
     public void draw(int order, int size, Point2D p1, Point2D p2) {
-        if (order >= 0) {
+        if (order > 0) {
             Line line = new Line(p1.getX(), p1.getY(), p2.getX(), p2.getY());
             pane.getChildren().add(line);
-            draw(order - 1, size - 10,
-                    new Point2D(p1.getX() * .5, p1.getY() * .5), new Point2D(p2.getX() * .5, p2.getY() * .5));
-            draw(order - 1, size - 10,
-                    new Point2D(p1.getX() * .5 + sceneL * .5, p1.getY() * .5), new Point2D(p2.getX() * .5 + sceneL * .5, p2.getY() * .5));
-            draw(order - 1, size - 10,
-                    new Point2D(p1.getX() * .5, p1.getY() * .5 + sceneH * .5), new Point2D(p2.getX() * .5, p2.getY() * .5 + sceneH * .5));
-            draw(order - 1, size - 10,
-                    new Point2D(p1.getX() * .5 + sceneL * .5, p1.getY() * .5 + sceneH * .5), new Point2D(p2.getX() * .5 + sceneL * .5, p2.getY() * .5 + sceneH * .5));
+            draw(order - 1, size - 10, new Point2D(p1.getX() * .5, p1.getY() * .5), new Point2D(p2.getX() * .5, p2.getY() * .5));
+            draw(order - 1, size - 10, new Point2D(p1.getX() * .5 + sceneL * .5, p1.getY() * .5), new Point2D(p2.getX() * .5 + sceneL * .5, p2.getY() * .5));
+            draw(order - 1, size - 10, new Point2D(p1.getX() * .5, p1.getY() * .5 + sceneH * .5), new Point2D(p2.getX() * .5, p2.getY() * .5 + sceneH * .5));
+            draw(order - 1, size - 10, new Point2D(p1.getX() * .5 + sceneL * .5, p1.getY() * .5 + sceneH * .5), new Point2D(p2.getX() * .5 + sceneL * .5, p2.getY() * .5 + sceneH * .5));
 
         }
     }

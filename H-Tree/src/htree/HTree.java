@@ -39,7 +39,7 @@ public class HTree extends Application {
 
         // Pane to hold label, text field, and a button
         HBox hBox = new HBox(10);
-        Label label = new Label("Enter an order: ");
+        Label label = new Label("Enter an order number: ");
         hBox.getChildren().addAll(label, tfOrder);
         hBox.setAlignment(Pos.CENTER);
 
@@ -48,7 +48,7 @@ public class HTree extends Application {
         borderPane.setBottom(hBox);
 
         // Create a scene and place it in the stage
-        Scene scene = new Scene(borderPane, 400, 410);
+        Scene scene = new Scene(borderPane, 500, 500);
         primaryStage.setTitle("H-Tree Fractal"); // Set the stage title
         primaryStage.setScene(scene); // Place the scene in the stage
         primaryStage.show(); // Display the stage
@@ -61,44 +61,48 @@ public class HTree extends Application {
      * Pane for displaying fractal
      */
     static class HTreePane extends Pane {
-        private int order = 0;
+
+        BorderPane borderPane = new BorderPane();
+
+        double x = 500;
+        double y = 500;
+        private int orderNum = 0;
 
         HTreePane() {
+
         }
 
-        /**
+        /*
          * Set a new order
          */
-        public void setOrder(int order) {
-            this.order = order;
+        public void setOrder(int orderNum) {
+            this.orderNum = orderNum;
             paint();
         }
 
         protected void paint() {
             this.getChildren().clear();
-            //using unit 1 as 1/3 of width
-            displayHTree(order, this.getWidth(), new Point2D(0, 0));
+            // Top left point, bottom left point // Left side
+            makeLine(orderNum, new Point2D(x / 4, y / 4), new Point2D(x / 4, y * .75));
+            // Top right point, bottom right point // Right Side
+            makeLine(orderNum, new Point2D(x * .75, y / 4), new Point2D(x * .75, y * .75));
+            // Middle left, middle right // Middle
+            makeLine(orderNum, new Point2D(x / 4, y / 2), new Point2D(x * .75, y / 2));
         }
 
-        private void displayHTree(int order, double side, Point2D p) {
-
-            double x = p.getX();
-            double y = p.getY();
-            double side2 = side / 2;
-
-            if (order > 0) {
-                // Recursively display shoreline
-                displayHTree(order - 1, side2, new Point2D(x + side2, y));
-                displayHTree(order - 1, side2, new Point2D(x, y + side2));
-            } else {
-                //draw shoreline
-                this.getChildren().add(new Line(x, y + side, x + side / 2, y + side));
-                this.getChildren().add(new Line(x + side / 2, y + side, x + side / 2, y + side / 2));
-                this.getChildren().add(new Line(x + side / 2, y + side / 2, x + side, y + side / 2));
-                this.getChildren().add(new Line(x + side, y + side / 2, x + side, y));
+        private void makeLine(int orderNum, Point2D p1, Point2D p2) {
+            if (orderNum > 0) {
+                Line line = new Line(p1.getX(), p1.getY(), p2.getX(), p2.getY());
+                this.getChildren().add(line);
+                // top left square	(200x200)
+                makeLine(orderNum - 1, new Point2D(p1.getX() / 2, p1.getY() / 2), new Point2D(p2.getX() / 2, p2.getY() / 2));
+                // top right square (400x200)
+                makeLine(orderNum - 1, new Point2D(x / 2 + p1.getX() / 2, y * 0 + p1.getY() / 2), new Point2D(p2.getX() / 2 + x / 2, p2.getY() / 2));
+                // bottom left square (200x400)
+                makeLine(orderNum - 1, new Point2D(p1.getX() / 2, y / 2 + p1.getY() / 2), new Point2D(p2.getX() / 2, y / 2 + p2.getY() / 2));
+                // bottom right square (
+                makeLine(orderNum - 1, new Point2D(x / 2 + p1.getX() / 2, y / 2 + p1.getY() / 2), new Point2D(x / 2 + p2.getX() / 2, y / 2 + p2.getY() / 2));
             }
-
         }
-
     }
 }

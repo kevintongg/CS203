@@ -54,7 +54,9 @@ public class HTree_Jacob extends Application {
      * Pane for displaying fractal
      */
     static class HTreePane extends Pane {
+
         private int order = 0;
+
 
         HTreePane() {
         }

@@ -83,10 +83,22 @@ public class Lab2 {
             stack.push(i);
         }
 
+        System.out.println("Your items in the stack:");
+        for (Integer i : stack) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
         System.out.println("We are removing this item in the stack: " + stack.pop() + ".");
         System.out.println("The topmost item in the stack is: " + stack.peek() + ".");
-        System.out.println("Is the stack empty?: " + stack.isEmpty());
-        System.out.println("There are " + stack.getSize() + " items in the stack.\n");
+        System.out.println("Is the stack empty: " + stack.isEmpty());
+        System.out.println("There are " + stack.getSize() + " items in the stack.");
+
+        System.out.println("Your items in the stack now:");
+        for (Integer j : stack) {
+            System.out.print(j + " ");
+        }
+        System.out.println("\n");
     }
 
     public static <E extends Comparable<E>> int linearSearch(E[] list, E key) {
