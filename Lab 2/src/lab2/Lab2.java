@@ -166,17 +166,17 @@ public class Lab2 {
 
     public static <E extends Comparable<E>> void sort(ArrayList<E> list) {
 
-        for (int i = 0; i < list.size() - 1; i++) {
+        for (int i = 0; i < list.size(); i++) {
             E temp = list.get(i);
-            int min = i;
-            for (int j = i + 1; j < list.size(); j++) {
+            int k = i;
+            for (int j = i; j < list.size(); j++) {
                 if (list.get(j).compareTo(temp) < 0) {
                     temp = list.get(j);
-                    min = j;
+                    k = j;
                 }
             }
-            if (min != i) {
-                list.set(min, list.get(i));
+            if (k != i) {
+                list.set(k, list.get(i));
                 list.set(i, temp);
             }
         }
