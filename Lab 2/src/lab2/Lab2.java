@@ -43,7 +43,7 @@ public class Lab2 {
         for (Integer preRemoval : list1) {
             System.out.print(preRemoval + " ");
         }
-        removeDuplicates(list1);
+        list1 = removeDuplicates(list1);
         System.out.println("\nAfter removal of duplicates");
         for (Integer postRemoval : list1) {
             System.out.print(postRemoval + " ");
@@ -142,12 +142,11 @@ public class Lab2 {
 
     public static <E> ArrayList<E> removeDuplicates(ArrayList<E> list) {
 
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).equals(list.get(i))) {
-                list.remove(i);
-            }
-        }
-        return list;
+        ArrayList<E> newListWithoutDuplicates = new ArrayList<>();
+
+        list.stream().filter(e -> !newListWithoutDuplicates.contains(e)).forEach(newListWithoutDuplicates::add);
+
+        return newListWithoutDuplicates;
     }
 
     public static <E extends Comparable<E>> E max(E[][] list) {
@@ -168,15 +167,15 @@ public class Lab2 {
 
         for (int i = 0; i < list.size(); i++) {
             E temp = list.get(i);
-            int k = i;
+            int min = i;
             for (int j = i; j < list.size(); j++) {
                 if (list.get(j).compareTo(temp) < 0) {
                     temp = list.get(j);
-                    k = j;
+                    min = j;
                 }
             }
-            if (k != i) {
-                list.set(k, list.get(i));
+            if (min != i) {
+                list.set(min, list.get(i));
                 list.set(i, temp);
             }
         }
