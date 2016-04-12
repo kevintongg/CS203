@@ -2,7 +2,6 @@ package lab2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 public class Lab2 {
 
@@ -167,7 +166,19 @@ public class Lab2 {
 
     public static <E extends Comparable<E>> void sort(ArrayList<E> list) {
 
-        Collections.sort(list);
-
+        for (int i = 0; i < list.size() - 1; i++) {
+            E temp = list.get(i);
+            int min = i;
+            for (int j = i + 1; j < list.size(); j++) {
+                if (list.get(j).compareTo(temp) < 0) {
+                    temp = list.get(j);
+                    min = j;
+                }
+            }
+            if (min != i) {
+                list.set(min, list.get(i));
+                list.set(i, temp);
+            }
+        }
     }
 }
