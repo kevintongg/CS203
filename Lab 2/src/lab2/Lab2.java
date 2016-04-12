@@ -15,21 +15,21 @@ public class Lab2 {
 
         genericStackRunner();
 
+        Integer[] sortedList = {1, 2, 3, 4, 5, 11, 23, 32};
+        Integer[] unsortedList = {10, 1, 5, 6, 2, 4, 7};
+
         System.out.println("Generic Linear Search");
-        Integer[] linearSearchList = {1, 2, 3, 4, 5, 11, 23, 32};
-        System.out.println("The index of our key is " + linearSearch(linearSearchList, 23) + ".");
+        System.out.println("The index of our key is " + linearSearch(sortedList, 23) + ".");
 
         System.out.println("\nGeneric Binary Search");
-        Integer[] binarySearchList = {7, 9, 10, 15, 20, 25};
-        System.out.println("The index of our key is " + binarySearch(binarySearchList, 15) + ".");
+        System.out.println("The index of our key is " + binarySearch(sortedList, 23) + ".");
 
         System.out.println("\nGeneric Selection Sort");
-        Integer[] selectionList = {10, 1, 5, 6, 2, 4, 7};
         System.out.println("Before selection sort:");
-        System.out.println(Arrays.toString(selectionList));
-        selectionSort(selectionList);
+        System.out.println(Arrays.toString(unsortedList));
+        selectionSort(unsortedList);
         System.out.println("After selection sort:");
-        System.out.println(Arrays.toString(selectionList));
+        System.out.println(Arrays.toString(unsortedList));
 
         System.out.println("\nExtra Credit: Implement the following method that returns a new ArrayList. The new list contains the non-duplicate elements from the original list.");
         ArrayList<Integer> list1 = new ArrayList();
