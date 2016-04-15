@@ -12,6 +12,8 @@
       <sourceFolder url="file://$MODULE_DIR$/Binary Search" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/JavaFX" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Generics" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/Queues" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="true" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
