@@ -45,7 +45,6 @@ public class Lab3 {
         } while (counter != 5);
 
         for (int i = 0; i < arrayList.size(); i++) {
-            if (arrayList.contains())
         }
 
         arrayList.forEach(System.out::println);
