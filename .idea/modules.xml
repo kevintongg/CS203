@@ -5,8 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/CS203.iml" filepath="$PROJECT_DIR$/CS203.iml" />
       <module fileurl="file://$PROJECT_DIR$/Homework 1 — H-Tree Fractal/Homework 1 — H-Tree Fractal.iml" filepath="$PROJECT_DIR$/Homework 1 — H-Tree Fractal/Homework 1 — H-Tree Fractal.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab 1 — Recursion/Lab 1.iml" filepath="$PROJECT_DIR$/Lab 1 — Recursion/Lab 1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab 2/Lab 2.iml" filepath="$PROJECT_DIR$/Lab 2/Lab 2.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab 2/Lab 2 — Generics.iml" filepath="$PROJECT_DIR$/Lab 2/Lab 2 — Generics.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Lab 3 — List, Stacks, Queues, Sets, and Maps/Lab 3 — List, Stacks, Queues, Sets, and Maps.iml" filepath="$PROJECT_DIR$/Lab 3 — List, Stacks, Queues, Sets, and Maps/Lab 3 — List, Stacks, Queues, Sets, and Maps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab 3/Lab 3.iml" filepath="$PROJECT_DIR$/Lab 3/Lab 3.iml" />
       <module fileurl="file://$PROJECT_DIR$/Test/Test.iml" filepath="$PROJECT_DIR$/Test/Test.iml" />
     </modules>
   </component>
