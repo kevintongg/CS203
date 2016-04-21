@@ -1,9 +1,13 @@
 package lab3;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class Lab3 {
 
@@ -11,9 +15,58 @@ public class Lab3 {
 
     public static void main(String[] args) {
 
-        readFromInsertedOrder();
-        readNonDuplicatesAscending();
+        int choice;
 
+        do {
+            System.out.println("Press 1 for: Write a program that reads words from your input and display all words in the inserted order.");
+            System.out.println("Press 2 for: Write a program that reads words from your input and displays all the non-duplicate words in ascending order.");
+            System.out.println("Press 3 for: Rewrite 3) (Option 2) using one of set data structure.");
+            System.out.println("Press 4 for: Write a program that reads words from a text file and display all the non duplicate words in ascending order.");
+            System.out.println("Press 5 for: Write a program that reads a text file and displays the number of each vowel (a, e, i, o, u)  in the file.");
+            System.out.println("Press 6 for: Write a program that reads a text file and count the occurrences of words in the text file and display the words and number of occurrences.");
+            while (!sc.hasNextInt()) {
+                sc.nextLine();
+                System.out.println("Invalid Input!");
+                System.out.println("Press 1 for: Write a program that reads words from your input and display all words in the inserted order.");
+                System.out.println("Press 2 for: Write a program that reads words from your input and displays all the non-duplicate words in ascending order.");
+                System.out.println("Press 3 for: Rewrite 3) (Option 2) using one of set data structure.");
+                System.out.println("Press 4 for: Write a program that reads words from a text file and display all the non duplicate words in ascending order.");
+                System.out.println("Press 5 for: Write a program that reads a text file and displays the number of each vowel (a, e, i, o, u)  in the file.");
+                System.out.println("Press 6 for: Write a program that reads a text file and count the occurrences of words in the text file and display the words and number of occurrences.");
+            }
+            choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    readFromInsertedOrder();
+                    break;
+                case 2:
+                    readNonDuplicatesAscending();
+                    break;
+                case 3:
+                    rewriteNonDuplicates();
+                    break;
+                case 4:
+                    textFileNonDuplicates();
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    numberOfOccurrences();
+                    break;
+            }
+            if (choice < 0 || choice > 6) {
+                System.out.println("Invalid Input!");
+                System.out.println("Press 1 for: Write a program that reads words from your input and display all words in the inserted order.");
+                System.out.println("Press 2 for: Write a program that reads words from your input and displays all the non-duplicate words in ascending order.");
+                System.out.println("Press 3 for: Rewrite 3) (Option 2) using one of set data structure.");
+                System.out.println("Press 4 for: Write a program that reads words from a text file and display all the non duplicate words in ascending order.");
+                System.out.println("Press 5 for: Write a program that reads a text file and displays the number of each vowel (a, e, i, o, u)  in the file.");
+                System.out.println("Press 6 for: Write a program that reads a text file and count the occurrences of words in the text file and display the words and number of occurrences.");
+            }
+            if (choice == 0) {
+                System.out.println("Thank you! Have a nice day!");
+            }
+        } while (choice != 0);
     }
 
     private static void readFromInsertedOrder() {
@@ -44,9 +97,67 @@ public class Lab3 {
             counter++;
         } while (counter != 5);
 
-        for (int i = 0; i < arrayList.size(); i++) {
+        for (int i = 0; i < arrayList.size() - 1; i++) {
+            for (int j = i; j < arrayList.size() - 1; j++) {
+                if (arrayList.get(j).equals(arrayList.get(i))) {
+                    arrayList.remove(j);
+                }
+            }
         }
 
         arrayList.forEach(System.out::println);
+    }
+
+    private static void rewriteNonDuplicates() {
+
+        Set<String> set = new TreeSet<>();
+
+        int counter = 0;
+        System.out.println("We will now get five words to display in ascending order with duplicates removed with a new data structure");
+        do {
+            System.out.println("Please enter word #" + (counter + 1) + ":");
+            set.add(sc.next());
+            counter++;
+        } while (counter != 5);
+
+        set.forEach(System.out::println);
+    }
+
+    private static void textFileNonDuplicates() {
+
+        Set<String> set = new TreeSet<>();
+        List<String> list = new ArrayList<>();
+        String file = "C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt".replaceAll("[-,.?]", " ");
+
+        Path path = Paths.get("C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt");
+        Charset charset = Charset.forName("UTF-8");
+        try {
+            list = Files.readAllLines(path, charset);
+
+        } catch (IOException e) {
+            System.err.format("IOException %s%n:", e);
+        }
+
+        set.addAll(list);
+        set.forEach(System.out::println);
+    }
+
+    private static void numberOfOccurrences() {
+
+        Map<String, Integer> map = new HashMap<>();
+        List<String> list = new ArrayList<>();
+
+        Path path = Paths.get("lab3/lincoln.txt");
+        Charset charset = Charset.forName("UTF-8");
+        try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
+            list = Files.readAllLines(path, charset);
+        } catch (NoSuchFileException e) {
+            System.err.format("NoSuchFileException %s%n:", e);
+        } catch (IOException e) {
+            System.err.format("IOException %s%n:", e);
+        }
+
+        list.forEach(System.out::println);
+
     }
 }
