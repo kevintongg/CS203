@@ -132,25 +132,15 @@ public class Lab3 {
         List<String> list = new ArrayList<>();
         File file = new File("C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt");
         Scanner fileScanner = new Scanner(file);
+        String s;
         while (fileScanner.hasNext()) {
-            String s = fileScanner.next();
-            s.replaceAll("[-,.?]", "");
-            set.add(s);
+            s = fileScanner.next();
+            String finalResult = s.replaceAll("[-,.?]", "");
+            set.add(finalResult);
         }
         fileScanner.close();
-//        String s = "C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt";
-//        s.split("[-,.?]");
-//        list.add(s);
 
         list.forEach(System.out::println);
-
-        for (int i = 0; i < list.size(); i++) {
-            for (int j = i; j < list.size(); j++) {
-                if (list.get(j).equals(list.get(i))) {
-                    list.remove(j);
-                }
-            }
-        }
 
 //        Path path = Paths.get("C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt");
 //        Charset charset = Charset.forName("UTF-8");
