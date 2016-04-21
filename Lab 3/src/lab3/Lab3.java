@@ -1,6 +1,8 @@
 package lab3;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -13,7 +15,7 @@ public class Lab3 {
 
     private static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         int choice;
 
@@ -62,6 +64,7 @@ public class Lab3 {
                 System.out.println("Press 4 for: Write a program that reads words from a text file and display all the non duplicate words in ascending order.");
                 System.out.println("Press 5 for: Write a program that reads a text file and displays the number of each vowel (a, e, i, o, u)  in the file.");
                 System.out.println("Press 6 for: Write a program that reads a text file and count the occurrences of words in the text file and display the words and number of occurrences.");
+                System.out.println("Enter 0 to exit the program.");
             }
             if (choice == 0) {
                 System.out.println("Thank you! Have a nice day!");
@@ -123,22 +126,42 @@ public class Lab3 {
         set.forEach(System.out::println);
     }
 
-    private static void textFileNonDuplicates() {
+    private static void textFileNonDuplicates() throws FileNotFoundException {
 
         Set<String> set = new TreeSet<>();
         List<String> list = new ArrayList<>();
-        String file = "C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt".replaceAll("[-,.?]", " ");
+        File file = new File("C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt");
+        Scanner fileScanner = new Scanner(file);
+        while (fileScanner.hasNext()) {
+            String s = fileScanner.next();
+            s.replaceAll("[-,.?]", "");
+            set.add(s);
+        }
+        fileScanner.close();
+//        String s = "C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt";
+//        s.split("[-,.?]");
+//        list.add(s);
 
-        Path path = Paths.get("C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt");
-        Charset charset = Charset.forName("UTF-8");
-        try {
-            list = Files.readAllLines(path, charset);
+        list.forEach(System.out::println);
 
-        } catch (IOException e) {
-            System.err.format("IOException %s%n:", e);
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = i; j < list.size(); j++) {
+                if (list.get(j).equals(list.get(i))) {
+                    list.remove(j);
+                }
+            }
         }
 
-        set.addAll(list);
+//        Path path = Paths.get("C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt");
+//        Charset charset = Charset.forName("UTF-8");
+//        try {
+//            list = Files.readAllLines(path, charset);
+//
+//        } catch (IOException e) {
+//            System.err.format("IOException %s%n:", e);
+//        }
+
+//        set.addAll(list);
         set.forEach(System.out::println);
     }
 
