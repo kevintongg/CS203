@@ -22,7 +22,7 @@ public class EvaluateExpression extends Application {
     TextArea text = new TextArea();
 
     public static void main(String[] args) {
-        Application.launch(args);
+        launch(args);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class EvaluateExpression extends Application {
         expression = insertBlanks(expression);
 
         // Extract operands and operators
-        String[] tokens = expression.split("\\s+");
+        String[] tokens = expression.split(" ");
 
         // Phase 1 Scan tokens
         for (String token : tokens) {
@@ -76,27 +76,35 @@ public class EvaluateExpression extends Application {
                 continue; // Back to the while loop to extract the next token
                 // Phase 1.2
             else if (token.charAt(0) == '+' || token.charAt(0) == '-') {
-
-                while (!operatorStack.isEmpty()
-                        && (operatorStack.peek() == '+'
-                        || operatorStack.peek() == '-'
-                        || operatorStack.peek() == '*'
-                        || operatorStack.peek() == '/')) {
+                // Process all +, -, *, / in the top of the operator stack
+                while (!operatorStack.isEmpty() &&
+                        (operatorStack.peek() == '+'
+                                || operatorStack.peek() == '-'
+                                || operatorStack.peek() == '*'
+                                || operatorStack.peek() == '/')) {
                     processAnOperator(operandStack, operatorStack);
                 }
 
                 // Push the + or - operator into the operator stack
                 operatorStack.push(token.charAt(0));
                 // Phase 1.3
-            } else if (token.charAt(0) == '*' || token.charAt(0) == '/') {
+            } else if (token.charAt(0) == '*' || token.charAt(0) == '/' || token.charAt(0) == '%') {
                 // Process all *, /, % in the top of the operator stack
-                while (!operatorStack.isEmpty()
-                        && (operatorStack.peek() == '*'
-                        || operatorStack.peek() == '/')) {
+                while (!operatorStack.isEmpty() &&
+                        (operatorStack.peek() == '*'
+                                || operatorStack.peek() == '/'
+                                || operatorStack.peek() == '%')) {
                     processAnOperator(operandStack, operatorStack);
                 }
 
                 // Push the * or / operator into the operator stack
+                operatorStack.push(token.charAt(0));
+            } else if (token.charAt(0) == '^') {
+                // Process all *, / in the top of the operator stack
+                while (!operatorStack.isEmpty() &&
+                        (operatorStack.peek() == '^')) {
+                    processAnOperator(operandStack, operatorStack);
+                }
                 operatorStack.push(token.charAt(0));
             } else if (token.trim().charAt(0) == '(') {
                 operatorStack.push('('); // Push '(' to stack
@@ -143,14 +151,20 @@ public class EvaluateExpression extends Application {
         char op = operatorStack.pop();
         int op1 = operandStack.pop();
         int op2 = operandStack.pop();
-        if (op == '+')
+        if (op == '+') {
             operandStack.push(op2 + op1);
-        else if (op == '-')
+        } else if (op == '-') {
             operandStack.push(op2 - op1);
-        else if (op == '*')
+        } else if (op == '*') {
             operandStack.push(op2 * op1);
-        else if (op == '/')
+        } else if (op == '/') {
             operandStack.push(op2 / op1);
+        } else if (op == '^') {
+            operandStack.push((int) Math.pow(op2, op1));
+        } else if (op == '%') {
+            operandStack.push(op2 % op1);
+        }
+
     }
 
     public String insertBlanks(String s) {
@@ -159,7 +173,7 @@ public class EvaluateExpression extends Application {
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == '(' || s.charAt(i) == ')' || s.charAt(i) == '+'
                     || s.charAt(i) == '-' || s.charAt(i) == '*'
-                    || s.charAt(i) == '/') {
+                    || s.charAt(i) == '/' || s.charAt(i) == '^' || s.charAt(i) == '%') {
                 result.append(" ");
                 result.append(s.charAt(i));
                 result.append(" ");
