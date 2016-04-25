@@ -4,9 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -35,6 +33,13 @@ public class Snowflakes extends Application {
         tfOrder.setPrefColumnCount(4);
         tfOrder.setAlignment(Pos.BOTTOM_RIGHT);
 
+        // Create a menu
+        MenuBar menuBar = new MenuBar();
+        Menu menu = new Menu("_File");
+        MenuItem exit = new MenuItem("_Exit");
+        menu.getItems().add(exit);
+        menuBar.getMenus().add(menu);
+
         // Pane to hold label, text field, and a button
         HBox hBox = new HBox(10);
         Button clear = new Button("Clear Window");
@@ -42,6 +47,7 @@ public class Snowflakes extends Application {
         hBox.setAlignment(Pos.CENTER);
 
         BorderPane borderPane = new BorderPane();
+        borderPane.setTop(menuBar);
         borderPane.setCenter(trianglePane);
         borderPane.setBottom(hBox);
 
@@ -54,10 +60,18 @@ public class Snowflakes extends Application {
         scene.widthProperty().addListener(ov -> trianglePane.paint());
         scene.heightProperty().addListener(ov -> trianglePane.paint());
 
+        menu.setMnemonicParsing(true);
+        exit.setMnemonicParsing(true);
+
         clear.setOnAction(event -> {
             trianglePane.clear();
             tfOrder.requestFocus();
         });
+
+        exit.setOnAction(event -> {
+            primaryStage.close();
+        });
+
     }
 
     /**
