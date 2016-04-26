@@ -141,7 +141,7 @@ public class Lab3 {
 
         Set<String> set = new TreeSet<>();
         List<String> list = new ArrayList<>();
-        File file = new File("D:\\System\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt");
+        File file = new File("C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt");
         Scanner sc = new Scanner(file);
         String s;
         while (sc.hasNext()) {
@@ -157,7 +157,7 @@ public class Lab3 {
 
     private static void vowelsInText() throws IOException {
 
-        File file = new File("D:\\System\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt");
+        File file = new File("C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt");
         FileReader reader = new FileReader(file);
         int vowels;
         int a = 0;
@@ -173,7 +173,7 @@ public class Lab3 {
             if (vowels == 69 || vowels == 101) {
                 e++;
             }
-            if (vowels == 73 || vowels == 108) {
+            if (vowels == 73 || vowels == 105) {
                 i++;
             }
             if (vowels == 79 || vowels == 111) {
@@ -185,7 +185,7 @@ public class Lab3 {
         }
         reader.close();
 
-        System.out.println("Number of of the following vowels:");
+        System.out.println("Number of the following vowels:");
         System.out.println("a — " + a);
         System.out.println("e — " + e);
         System.out.println("i — " + i);
@@ -198,7 +198,7 @@ public class Lab3 {
 
     private static void numberOfOccurrences() throws FileNotFoundException {
 
-        File file = new File("D:\\System\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt");
+        File file = new File("C:\\Users\\kcr12\\Documents\\JetBrains\\IdeaProjects\\CS203\\Lab 3\\src\\lab3\\lincoln.txt");
         Scanner sc = new Scanner(file);
 
         Map<String, Integer> map = new TreeMap<>();

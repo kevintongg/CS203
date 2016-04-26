@@ -31,7 +31,9 @@ public class EvaluateExpression extends Application {
 
         HBox hbox = new HBox();
         tf.setPrefColumnCount(40);
-        hbox.getChildren().addAll(new Label("Please enter arithmetic expression   "), tf);
+        Label enterLabel = new Label("Please enter arithmetic expression     ");
+        enterLabel.setStyle("-fx-min-width: 200px");
+        hbox.getChildren().addAll(enterLabel, tf);
         bp.setTop(hbox);
         tf.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 20));
         text.setFont(Font.font("Times New Roman", FontWeight.BOLD, FontPosture.REGULAR, 18));
