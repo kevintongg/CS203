@@ -34,6 +34,10 @@ public class Lab4 {
 
         System.out.println("Recursive Fibonacci took: " + end);
         System.out.println("Dynamic Fibonacci took: " + dynamicEnd);
+
+        System.out.println("Enter a number to use for fibonacci sequence");
+        int num = sc.nextInt();
+        System.out.println(fib(num));
     }
 
     private static void mostOccurrences() {
@@ -62,5 +66,15 @@ public class Lab4 {
         maxOccurrenceMap.forEach((key, value) -> {
             System.out.println("Your key which appeared " + value + " time(s): " + key);
         });
+    }
+
+    private static int fib(int n) {
+
+        if (n == 0 || n == 1) {
+            return 1;
+        } else {
+            return fib(n - 1) + fib(n - 2);
+        }
+
     }
 }
