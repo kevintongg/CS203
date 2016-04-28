@@ -21,23 +21,57 @@ public class Lab4 {
          *
          * */
 
-        mostOccurrences();
+
+        int choice;
+        do {
+            System.out.println("Enter 1 to find the most occurrences of integers entered.");
+            System.out.println("Enter 2 to start the Fibonacci Number recursively and dynamically.");
+            System.out.println("Enter 0 to quit.");
+            while (!sc.hasNextInt()) {
+                System.out.println("Invalid input!");
+                System.out.println("Enter 1 to find the most occurrences of integers entered.");
+                System.out.println("Enter 2 to start the Fibonacci Number recursively and dynamically.");
+                System.out.println("Enter 0 to quit.");
+            }
+            choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    mostOccurrences();
+                    break;
+                case 2:
+                    long[] longs = {10, 20, 40};
+                    long start;
+                    long end;
+
+                    long dynamicStart;
+                    long dynamicEnd;
+
+                    for (int i = 0; i < longs.length; i++) {
+                        start = System.currentTimeMillis();
+                        recursiveFib(longs[i]);
+                        end = System.currentTimeMillis() - start;
+
+                        dynamicStart = System.currentTimeMillis();
+                        dynamicFib(longs[i]);
+                        dynamicEnd = System.currentTimeMillis() - dynamicStart;
+
+                        System.out.println("Recursive Fibonacci of " + longs[i] + " took: " + end + " milliseconds.");
+                        System.out.println();
+                        System.out.println("Dynamic Fibonacci of " + longs[i] + " took: " + dynamicEnd + " milliseconds.");
+                        System.out.println();
+                    }
+                    break;
+
+            }
+            if (choice < 0 || choice > 2) {
+                System.out.println("Invalid input!");
+                System.out.println("Enter 1 to find the most occurrences of integers entered.");
+                System.out.println("Enter 2 to start the Fibonacci Number recursively and dynamically");
+                System.out.println("Enter 0 to quit.");
+            }
+        } while (choice != 0);
 
 
-        long[] nums = {10, 20, 30};
-
-        long start = System.currentTimeMillis();
-        long end = System.currentTimeMillis() - start;
-
-        long dynamicStart = System.currentTimeMillis();
-        long dynamicEnd = System.currentTimeMillis() - dynamicStart;
-
-        System.out.println("Recursive Fibonacci took: " + end);
-        System.out.println("Dynamic Fibonacci took: " + dynamicEnd);
-
-        System.out.println("Enter a number to use for fibonacci sequence");
-        int num = sc.nextInt();
-        System.out.println(fib(num));
     }
 
     private static void mostOccurrences() {
@@ -47,19 +81,18 @@ public class Lab4 {
 
         System.out.println("Please enter any some random integers which are not 0 and input 0 when finished.");
         while ((num = sc.nextInt()) != 0) {
-            if (!occurrenceMap.containsKey(num)) {
+            if (!occurrenceMap.containsKey(num))
                 occurrenceMap.put(num, 1);
-            } else {
-                occurrenceMap.put(num, occurrenceMap.get(num) - 1);
-            }
+            else
+                occurrenceMap.put(num, occurrenceMap.get(num) + 1);
         }
+
 
         int max = Collections.max(occurrenceMap.values());
         Map<Integer, Integer> maxOccurrenceMap = new HashMap<>();
         occurrenceMap.forEach((key, value) -> {
-            if (value >= max) {
+            if (value >= max)
                 maxOccurrenceMap.put(key, value);
-            }
         });
 
         System.out.println("Your number with the highest number of occurrences");
@@ -68,13 +101,35 @@ public class Lab4 {
         });
     }
 
-    private static int fib(int n) {
+    private static long recursiveFib(long n) {
 
         if (n == 0 || n == 1) {
             return 1;
         } else {
-            return fib(n - 1) + fib(n - 2);
+            return recursiveFib(n - 1) + recursiveFib(n - 2);
+        }
+    }
+
+    private static long dynamicFib(long n) {
+
+        long f0 = 0;
+        long f1 = 1;
+        long f2 = 1;
+
+        if (n == 0) {
+            return f0;
+        } else if (n == 1) {
+            return f1;
+        } else if (n == 2) {
+            return f2;
         }
 
+        for (int i = 3; i <= n; i++) {
+            f0 = f1;
+            f1 = f2;
+            f2 = f0 + f1;
+        }
+
+        return f2;
     }
 }
