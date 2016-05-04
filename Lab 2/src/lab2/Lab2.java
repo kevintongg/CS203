@@ -129,8 +129,8 @@ public class Lab2 {
 
     public static <E extends Comparable<E>> void selectionSort(E[] list) {
 
-        for (int i = 0; i < list.length; i++) {
-            for (int j = i; j < list.length; j++) {
+        for (int i = 0; i < list.length - 1; i++) {
+            for (int j = i + 1; j < list.length; j++) {
                 if (list[j].compareTo(list[i]) < 0) {
                     E temp = list[j];
                     list[j] = list[i];
