@@ -13,8 +13,8 @@ public class SelectionSortIterativeTest {
 
     public static void iterativeSelectionSort(double[] list) {
 
-        for (int i = 0; i < list.length; i++) { // For every element in the list
-            for (int j = i; j < list.length; j++) { // Find every subsequent element
+        for (int i = 0; i < list.length - 1; i++) { // For every element in the list
+            for (int j = i + 1; j < list.length; j++) { // Find every subsequent element
                 if (list[j] < list[i]) { // And if any of those subsequent elements are less then the current element
                     /*swap v*/
                     double temp = list[j]; // Swap their values and continue
