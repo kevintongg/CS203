@@ -1,8 +1,7 @@
-public class Test {
+public class Test<E> {
 
     public static void main(String[] args) {
 
-        System.out.println();
 
     }
 }
