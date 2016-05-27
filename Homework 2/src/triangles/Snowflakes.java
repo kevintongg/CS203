@@ -78,6 +78,7 @@ public class Snowflakes extends Application {
      * Pane for displaying fractal
      */
     static class KochSnowFlakePane extends Pane {
+
         private int order = 0;
 
         KochSnowFlakePane() {
