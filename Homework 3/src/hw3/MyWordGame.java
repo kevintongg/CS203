@@ -1,4 +1,4 @@
-package guessing_game;
+package hw3;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
