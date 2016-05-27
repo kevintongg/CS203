@@ -130,13 +130,15 @@ public class Lab2 {
     public static <E extends Comparable<E>> void selectionSort(E[] list) {
 
         for (int i = 0; i < list.length - 1; i++) {
+            int smallest = i;
             for (int j = i + 1; j < list.length; j++) {
-                if (list[j].compareTo(list[i]) < 0) {
-                    E temp = list[j];
-                    list[j] = list[i];
-                    list[i] = temp;
+                if (list[j].compareTo(list[smallest]) < 0) {
+                    smallest = j;
                 }
             }
+            E temp = list[smallest];
+            list[smallest] = list[i];
+            list[i] = temp;
         }
     }
 

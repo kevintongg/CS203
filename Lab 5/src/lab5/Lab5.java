@@ -129,6 +129,7 @@ public class Lab5<E> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private static <E extends Comparable<E>> void mergeSort(E[] list) {
 
         if (list.length > 1) {
@@ -187,7 +188,5 @@ public class Lab5<E> {
         for (int i = list.length - 1; i >= 0; i--) {
             list[i] = heap.remove();
         }
-
-        printArray(list);
     }
 }
