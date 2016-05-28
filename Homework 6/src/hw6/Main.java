@@ -1,8 +1,9 @@
 package hw6;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-public class Runner {
+public class Main {
 
     private static final int FIFTY_THOUSAND = 50000;
     private static final int ONE_HUNDRED_THOUSAND = 100000;
@@ -10,17 +11,113 @@ public class Runner {
     private static final int TWO_HUNDRED_THOUSAND = 200000;
     private static final int TWO_HUNDRED_FIFTY_THOUSAND = 250000;
     private static final int THREE_HUNDRED_THOUSAND = 300000;
-    private static Random random = new Random();
+    private static final Random RANDOM = new Random();
+    private static String selectionSortTime50, selectionSortTime100, selectionSortTime150, selectionSortTime200, selectionSortTime250, selectionSortTime300;
+    private static String insertionSortTime50, insertionSortTime100, insertionSortTime150, insertionSortTime200, insertionSortTime250, insertionSortTime300;
+    private static String bubbleSortTime50, bubbleSortTime100, bubbleSortTime150, bubbleSortTime200, bubbleSortTime250, bubbleSortTime300;
+    private static String mergeSortTime50, mergeSortTime100, mergeSortTime150, mergeSortTime200, mergeSortTime250, mergeSortTime300;
+    private static String quickSortTime50, quickSortTime100, quickSortTime150, quickSortTime200, quickSortTime250, quickSortTime300;
+    private static String heapSortTime50, heapSortTime100, heapSortTime150, heapSortTime200, heapSortTime250, heapSortTime300;
+    private static String[][] table = new String[7][7];
 
     public static void main(String[] args) {
 
-        random.setSeed(System.currentTimeMillis());
+        RANDOM.setSeed(System.currentTimeMillis());
         selectionSortArrayCreationAndExecution();
         insertionSortArrayCreationAndExecution();
         bubbleSortArrayCreationAndExecution();
         mergeSortArrayCreationAndExecution();
         quickSortArrayCreationAndExecution();
         heapSortArrayCreationAndExecution();
+        table();
+    }
+
+    private static void table() {
+
+        makeTable();
+        setTable();
+        printTable(table);
+    }
+
+    private static void makeTable() {
+
+        for (int i = 0; i < table.length; i++) {
+            for (int j = 0; j < table[i].length; j++) {
+                table[i][j] = " ";
+            }
+        }
+    }
+
+    private static void printTable(String[][] table) {
+
+        // Printing the table
+        for (String[] i : table) {
+            System.out.println(
+                    "\t=============================================================================================================================================================================");
+            for (String j : i) {
+                System.out.print("\t|" + "\t  " + j + "       ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void setTable() {
+
+        table[0][0] = "Array Size";
+        table[0][1] = "Selection Sort";
+        table[0][2] = "Insertion Sort";
+        table[0][3] = "Bubble Sort";
+        table[0][4] = "Merge Sort";
+        table[0][5] = "Quick Sort";
+        table[0][6] = "Heap Sort";
+        table[1][0] = "50000     ";
+        table[2][0] = "100000     ";
+        table[3][0] = "150000     ";
+        table[4][0] = "200000     ";
+        table[5][0] = "250000     ";
+        table[6][0] = "300000     ";
+
+        table[1][1] = selectionSortTime50 + "        ";
+        table[2][1] = selectionSortTime100 + "        ";
+        table[3][1] = selectionSortTime150 + "        ";
+        table[4][1] = selectionSortTime200 + "        ";
+        table[5][1] = selectionSortTime250 + "        ";
+        table[6][1] = selectionSortTime300 + "        ";
+
+        table[1][2] = insertionSortTime50 + "        ";
+        table[2][2] = insertionSortTime100 + "        ";
+        table[3][2] = insertionSortTime150 + "        ";
+        table[4][2] = insertionSortTime200 + "        ";
+        table[5][2] = insertionSortTime250 + "        ";
+        table[6][2] = insertionSortTime300 + "        ";
+
+        table[1][3] = bubbleSortTime50 + "       ";
+        table[2][3] = bubbleSortTime100 + "       ";
+        table[3][3] = bubbleSortTime150 + "       ";
+        table[4][3] = bubbleSortTime200 + "       ";
+        table[5][3] = bubbleSortTime250 + "       ";
+        table[6][3] = bubbleSortTime300 + "       ";
+
+        table[1][4] = mergeSortTime50 + "       ";
+        table[2][4] = mergeSortTime100 + "       ";
+        table[3][4] = mergeSortTime150 + "       ";
+        table[4][4] = mergeSortTime200 + "    ";
+        table[5][4] = mergeSortTime250 + "    ";
+        table[6][4] = mergeSortTime300 + "    ";
+
+        table[1][5] = quickSortTime50 + "       ";
+        table[2][5] = quickSortTime100 + "       ";
+        table[3][5] = quickSortTime150 + "       ";
+        table[4][5] = quickSortTime200 + "       ";
+        table[5][5] = quickSortTime250 + "       ";
+        table[6][5] = quickSortTime300 + "       ";
+
+        table[1][6] = heapSortTime50;
+        table[2][6] = heapSortTime100;
+        table[3][6] = heapSortTime150;
+        table[4][6] = heapSortTime200;
+        table[5][6] = heapSortTime250;
+        table[6][6] = heapSortTime300;
     }
 
     private static <E extends Comparable<E>> void selectionSort(E[] list) {
@@ -41,7 +138,7 @@ public class Runner {
     private static <E extends Comparable<E>> void insertionSort(E[] list) {
 
         for (int i = 1; i < list.length; i++) {
-            /**
+            /*
              *
              * Insert list[i] into a sorted sublist list[0..i-1] so
              * that list[0..i] is sorted.
@@ -133,7 +230,6 @@ public class Runner {
             quickSort(list, first, pivotIndex - 1); // recursive call
             quickSort(list, pivotIndex + 1, last);
         }
-
     }
 
     private static <E extends Comparable<E>> int partition(E[] list, int first, int last) {
@@ -144,11 +240,11 @@ public class Runner {
 
         while (high > low) {
             // Search forward from left
-            while (low <= high && pivot.compareTo(list[low]) < 0) {
+            while (low <= high && list[low].compareTo(pivot) <= 0) {
                 low++;
             }
             // Search backward from right
-            while (low <= high && pivot.compareTo(list[high]) > 0) {
+            while (low <= high && list[high].compareTo(pivot) > 0) {
                 high--;
             }
             // Swap two elements in the list
@@ -159,12 +255,12 @@ public class Runner {
             }
         }
 
-        while (high > first && pivot.compareTo(list[high]) >= 0) {
+        while (high > first && list[high].compareTo(pivot) >= 0) {
             high--;
         }
 
         // Swap pivot with list[high]
-        if (list[high].compareTo(pivot) > 0) {
+        if (pivot.compareTo(list[high]) > 0) {
             list[first] = list[high];
             list[high] = pivot;
             return high;
@@ -179,8 +275,8 @@ public class Runner {
         Heap<E> heap = new Heap<>();
 
         // Add elements to the heap
-        for (int i = 0; i < list.length; i++) {
-            heap.add(list[i]);
+        for (E i : list) {
+            heap.add(i);
         }
 
         // Remove items from the index
@@ -199,59 +295,65 @@ public class Runner {
         Integer[] threeHundredThousand = new Integer[THREE_HUNDRED_THOUSAND];
 
         for (int i = 0; i < FIFTY_THOUSAND; i++) {
-            fiftyThousand[i] = random.nextInt(FIFTY_THOUSAND);
+            fiftyThousand[i] = RANDOM.nextInt(FIFTY_THOUSAND);
         }
         for (int i = 0; i < ONE_HUNDRED_THOUSAND; i++) {
-            oneHundredThousand[i] = random.nextInt(ONE_HUNDRED_THOUSAND);
+            oneHundredThousand[i] = RANDOM.nextInt(ONE_HUNDRED_THOUSAND);
         }
         for (int i = 0; i < ONE_HUNDRED_FIFTY_THOUSAND; i++) {
-            oneHundredFiftyThousand[i] = random.nextInt(ONE_HUNDRED_FIFTY_THOUSAND);
+            oneHundredFiftyThousand[i] = RANDOM.nextInt(ONE_HUNDRED_FIFTY_THOUSAND);
         }
         for (int i = 0; i < TWO_HUNDRED_THOUSAND; i++) {
-            twoHundredThousand[i] = random.nextInt(TWO_HUNDRED_THOUSAND);
+            twoHundredThousand[i] = RANDOM.nextInt(TWO_HUNDRED_THOUSAND);
         }
         for (int i = 0; i < TWO_HUNDRED_FIFTY_THOUSAND; i++) {
-            twoHundredFiftyThousand[i] = random.nextInt(TWO_HUNDRED_FIFTY_THOUSAND);
+            twoHundredFiftyThousand[i] = RANDOM.nextInt(TWO_HUNDRED_FIFTY_THOUSAND);
         }
         for (int i = 0; i < THREE_HUNDRED_THOUSAND; i++) {
-            threeHundredThousand[i] = random.nextInt(THREE_HUNDRED_THOUSAND);
+            threeHundredThousand[i] = RANDOM.nextInt(THREE_HUNDRED_THOUSAND);
         }
 
         long fiftyThousandStart = System.currentTimeMillis();
         selectionSort(fiftyThousand);
         long fiftyThousandEnd = System.currentTimeMillis();
         long fiftyThousandExecutionTime = fiftyThousandEnd - fiftyThousandStart;
-        System.out.println("Selection sort of 50,000: " + fiftyThousandExecutionTime);
+        System.out.println("Selection sort of size 50,000: " + fiftyThousandExecutionTime + "ms");
+        selectionSortTime50 = Long.toString(fiftyThousandExecutionTime) + "ms";
 
         long oneHundredThousandStart = System.currentTimeMillis();
         selectionSort(oneHundredThousand);
         long oneHundredThousandEnd = System.currentTimeMillis();
         long oneHundredThousandExecutionTime = oneHundredThousandEnd - oneHundredThousandStart;
-        System.out.println("Selection sort of 100,000: " + oneHundredThousandExecutionTime);
+        System.out.println("Selection sort of size 100,000: " + oneHundredThousandExecutionTime + "ms");
+        selectionSortTime100 = Long.toString(oneHundredThousandExecutionTime) + "ms";
 
         long oneHundredFiftyThousandStart = System.currentTimeMillis();
         selectionSort(oneHundredFiftyThousand);
         long oneHundredFiftyThousandEnd = System.currentTimeMillis();
         long oneHundredFiftyThousandExecutionTime = oneHundredFiftyThousandEnd - oneHundredFiftyThousandStart;
-        System.out.println("Selection sort of 150,000: " + oneHundredFiftyThousandExecutionTime);
+        System.out.println("Selection sort of size 150,000: " + oneHundredFiftyThousandExecutionTime + "ms");
+        selectionSortTime150 = Long.toString(oneHundredFiftyThousandExecutionTime) + "ms";
 
         long twoHundredThousandStart = System.currentTimeMillis();
         selectionSort(twoHundredThousand);
         long twoHundredThousandEnd = System.currentTimeMillis();
         long twoHundredThousandExecutionTime = twoHundredThousandEnd - twoHundredThousandStart;
-        System.out.println("Selection sort of 200,000: " + twoHundredThousandExecutionTime);
+        System.out.println("Selection sort of size 200,000: " + twoHundredThousandExecutionTime + "ms");
+        selectionSortTime200 = Long.toString(twoHundredThousandExecutionTime) + "ms";
 
         long twoHundredFiftyThousandStart = System.currentTimeMillis();
         selectionSort(twoHundredFiftyThousand);
         long twoHundredFiftyThousandEnd = System.currentTimeMillis();
         long twoHundredFiftyThousandExecutionTime = twoHundredFiftyThousandEnd - twoHundredFiftyThousandStart;
-        System.out.println("Selection sort of size 250,000: " + twoHundredFiftyThousandExecutionTime);
+        System.out.println("Selection sort of size 250,000: " + twoHundredFiftyThousandExecutionTime + "ms");
+        selectionSortTime250 = Long.toString(twoHundredFiftyThousandExecutionTime) + "ms";
 
         long threeHundredThousandStart = System.currentTimeMillis();
         selectionSort(threeHundredThousand);
         long threeHundredThousandEnd = System.currentTimeMillis();
         long threeHundredThousandExecutionTime = threeHundredThousandEnd - threeHundredThousandStart;
-        System.out.println("Selection sort of size 300,000: " + threeHundredThousandExecutionTime);
+        System.out.println("Selection sort of size 300,000: " + threeHundredThousandExecutionTime + "ms");
+        selectionSortTime300 = Long.toString(threeHundredThousandExecutionTime) + "ms";
     }
 
     private static void insertionSortArrayCreationAndExecution() {
@@ -264,59 +366,65 @@ public class Runner {
         Integer[] threeHundredThousand = new Integer[THREE_HUNDRED_THOUSAND];
 
         for (int i = 0; i < FIFTY_THOUSAND; i++) {
-            fiftyThousand[i] = random.nextInt(FIFTY_THOUSAND);
+            fiftyThousand[i] = RANDOM.nextInt(FIFTY_THOUSAND);
         }
         for (int i = 0; i < ONE_HUNDRED_THOUSAND; i++) {
-            oneHundredThousand[i] = random.nextInt(ONE_HUNDRED_THOUSAND);
+            oneHundredThousand[i] = RANDOM.nextInt(ONE_HUNDRED_THOUSAND);
         }
         for (int i = 0; i < ONE_HUNDRED_FIFTY_THOUSAND; i++) {
-            oneHundredFiftyThousand[i] = random.nextInt(ONE_HUNDRED_FIFTY_THOUSAND);
+            oneHundredFiftyThousand[i] = RANDOM.nextInt(ONE_HUNDRED_FIFTY_THOUSAND);
         }
         for (int i = 0; i < TWO_HUNDRED_THOUSAND; i++) {
-            twoHundredThousand[i] = random.nextInt(TWO_HUNDRED_THOUSAND);
+            twoHundredThousand[i] = RANDOM.nextInt(TWO_HUNDRED_THOUSAND);
         }
         for (int i = 0; i < TWO_HUNDRED_FIFTY_THOUSAND; i++) {
-            twoHundredFiftyThousand[i] = random.nextInt(TWO_HUNDRED_FIFTY_THOUSAND);
+            twoHundredFiftyThousand[i] = RANDOM.nextInt(TWO_HUNDRED_FIFTY_THOUSAND);
         }
         for (int i = 0; i < THREE_HUNDRED_THOUSAND; i++) {
-            threeHundredThousand[i] = random.nextInt(THREE_HUNDRED_THOUSAND);
+            threeHundredThousand[i] = RANDOM.nextInt(THREE_HUNDRED_THOUSAND);
         }
 
         long fiftyThousandStart = System.currentTimeMillis();
         insertionSort(fiftyThousand);
         long fiftyThousandEnd = System.currentTimeMillis();
         long fiftyThousandExecutionTime = fiftyThousandEnd - fiftyThousandStart;
-        System.out.println("Insertion sort of size 50,000: " + fiftyThousandExecutionTime);
+        System.out.println("Insertion sort of size 50,000: " + fiftyThousandExecutionTime + "ms");
+        insertionSortTime50 = Long.toString(fiftyThousandExecutionTime) + "ms";
 
         long oneHundredThousandStart = System.currentTimeMillis();
         insertionSort(oneHundredThousand);
         long oneHundredThousandEnd = System.currentTimeMillis();
         long oneHundredThousandExecutionTime = oneHundredThousandEnd - oneHundredThousandStart;
-        System.out.println("Insertion sort of size 100,000: " + oneHundredThousandExecutionTime);
+        System.out.println("Insertion sort of size 100,000: " + oneHundredThousandExecutionTime + "ms");
+        insertionSortTime100 = Long.toString(oneHundredThousandExecutionTime) + "ms";
 
         long oneHundredFiftyThousandStart = System.currentTimeMillis();
         insertionSort(oneHundredFiftyThousand);
         long oneHundredFiftyThousandEnd = System.currentTimeMillis();
         long oneHundredFiftyThousandExecutionTime = oneHundredFiftyThousandEnd - oneHundredFiftyThousandStart;
-        System.out.println("Insertion sort of size 150,000: " + oneHundredFiftyThousandExecutionTime);
+        System.out.println("Insertion sort of size 150,000: " + oneHundredFiftyThousandExecutionTime + "ms");
+        insertionSortTime150 = Long.toString(oneHundredFiftyThousandExecutionTime) + "ms";
 
         long twoHundredThousandStart = System.currentTimeMillis();
         insertionSort(twoHundredThousand);
         long twoHundredThousandEnd = System.currentTimeMillis();
         long twoHundredThousandExecutionTime = twoHundredThousandEnd - twoHundredThousandStart;
-        System.out.println("Insertion sort of size 200,000: " + twoHundredThousandExecutionTime);
+        System.out.println("Insertion sort of size 200,000: " + twoHundredThousandExecutionTime + "ms");
+        insertionSortTime200 = Long.toString(twoHundredThousandExecutionTime) + "ms";
 
         long twoHundredFiftyThousandStart = System.currentTimeMillis();
         insertionSort(twoHundredFiftyThousand);
         long twoHundredFiftyThousandEnd = System.currentTimeMillis();
         long twoHundredFiftyThousandExecutionTime = twoHundredFiftyThousandEnd - twoHundredFiftyThousandStart;
-        System.out.println("Insertion sort of size 250,000: " + twoHundredFiftyThousandExecutionTime);
+        System.out.println("Insertion sort of size 250,000: " + twoHundredFiftyThousandExecutionTime + "ms");
+        insertionSortTime250 = Long.toString(twoHundredFiftyThousandExecutionTime) + "ms";
 
         long threeHundredThousandStart = System.currentTimeMillis();
         insertionSort(threeHundredThousand);
         long threeHundredThousandEnd = System.currentTimeMillis();
         long threeHundredThousandExecutionTime = threeHundredThousandEnd - threeHundredThousandStart;
-        System.out.println("Insertion sort of size 300,000: " + threeHundredThousandExecutionTime);
+        System.out.println("Insertion sort of size 300,000: " + threeHundredThousandExecutionTime + "ms");
+        insertionSortTime300 = Long.toString(threeHundredThousandExecutionTime) + "ms";
     }
 
     private static void bubbleSortArrayCreationAndExecution() {
@@ -329,59 +437,65 @@ public class Runner {
         Integer[] threeHundredThousand = new Integer[THREE_HUNDRED_THOUSAND];
 
         for (int i = 0; i < FIFTY_THOUSAND; i++) {
-            fiftyThousand[i] = random.nextInt(FIFTY_THOUSAND);
+            fiftyThousand[i] = RANDOM.nextInt(FIFTY_THOUSAND);
         }
         for (int i = 0; i < ONE_HUNDRED_THOUSAND; i++) {
-            oneHundredThousand[i] = random.nextInt(ONE_HUNDRED_THOUSAND);
+            oneHundredThousand[i] = RANDOM.nextInt(ONE_HUNDRED_THOUSAND);
         }
         for (int i = 0; i < ONE_HUNDRED_FIFTY_THOUSAND; i++) {
-            oneHundredFiftyThousand[i] = random.nextInt(ONE_HUNDRED_FIFTY_THOUSAND);
+            oneHundredFiftyThousand[i] = RANDOM.nextInt(ONE_HUNDRED_FIFTY_THOUSAND);
         }
         for (int i = 0; i < TWO_HUNDRED_THOUSAND; i++) {
-            twoHundredThousand[i] = random.nextInt(TWO_HUNDRED_THOUSAND);
+            twoHundredThousand[i] = RANDOM.nextInt(TWO_HUNDRED_THOUSAND);
         }
         for (int i = 0; i < TWO_HUNDRED_FIFTY_THOUSAND; i++) {
-            twoHundredFiftyThousand[i] = random.nextInt(TWO_HUNDRED_FIFTY_THOUSAND);
+            twoHundredFiftyThousand[i] = RANDOM.nextInt(TWO_HUNDRED_FIFTY_THOUSAND);
         }
         for (int i = 0; i < THREE_HUNDRED_THOUSAND; i++) {
-            threeHundredThousand[i] = random.nextInt(THREE_HUNDRED_THOUSAND);
+            threeHundredThousand[i] = RANDOM.nextInt(THREE_HUNDRED_THOUSAND);
         }
 
         long fiftyThousandStart = System.currentTimeMillis();
         bubbleSort(fiftyThousand);
         long fiftyThousandEnd = System.currentTimeMillis();
         long fiftyThousandExecutionTime = fiftyThousandEnd - fiftyThousandStart;
-        System.out.println("Bubble sort of size 50,000: " + fiftyThousandExecutionTime);
+        System.out.println("Bubble sort of size 50,000: " + fiftyThousandExecutionTime + "ms");
+        bubbleSortTime50 = Long.toString(fiftyThousandExecutionTime) + "ms";
 
         long oneHundredThousandStart = System.currentTimeMillis();
         bubbleSort(oneHundredThousand);
         long oneHundredThousandEnd = System.currentTimeMillis();
         long oneHundredThousandExecutionTime = oneHundredThousandEnd - oneHundredThousandStart;
-        System.out.println("Bubble sort of size 100,000: " + oneHundredThousandExecutionTime);
+        System.out.println("Bubble sort of size 100,000: " + oneHundredThousandExecutionTime + "ms");
+        bubbleSortTime100 = Long.toString(oneHundredThousandExecutionTime) + "ms";
 
         long oneHundredFiftyThousandStart = System.currentTimeMillis();
         bubbleSort(oneHundredFiftyThousand);
         long oneHundredFiftyThousandEnd = System.currentTimeMillis();
         long oneHundredFiftyThousandExecutionTime = oneHundredFiftyThousandEnd - oneHundredFiftyThousandStart;
-        System.out.println("Bubble sort of size 150,000: " + oneHundredFiftyThousandExecutionTime);
+        System.out.println("Bubble sort of size 150,000: " + oneHundredFiftyThousandExecutionTime + "ms");
+        bubbleSortTime150 = Long.toString(oneHundredFiftyThousandExecutionTime) + "ms";
 
         long twoHundredThousandStart = System.currentTimeMillis();
         bubbleSort(twoHundredThousand);
         long twoHundredThousandEnd = System.currentTimeMillis();
         long twoHundredThousandExecutionTime = twoHundredThousandEnd - twoHundredThousandStart;
-        System.out.println("Bubble sort of size 200,000: " + twoHundredThousandExecutionTime);
+        System.out.println("Bubble sort of size 200,000: " + twoHundredThousandExecutionTime + "ms");
+        bubbleSortTime200 = Long.toString(twoHundredThousandExecutionTime) + "ms";
 
         long twoHundredFiftyThousandStart = System.currentTimeMillis();
         bubbleSort(twoHundredFiftyThousand);
         long twoHundredFiftyThousandEnd = System.currentTimeMillis();
         long twoHundredFiftyThousandExecutionTime = twoHundredFiftyThousandEnd - twoHundredFiftyThousandStart;
-        System.out.println("Bubble sort of size 250,000: " + twoHundredFiftyThousandExecutionTime);
+        System.out.println("Bubble sort of size 250,000: " + twoHundredFiftyThousandExecutionTime + "ms");
+        bubbleSortTime250 = Long.toString(twoHundredFiftyThousandExecutionTime) + "ms";
 
         long threeHundredThousandStart = System.currentTimeMillis();
         bubbleSort(threeHundredThousand);
         long threeHundredThousandEnd = System.currentTimeMillis();
         long threeHundredThousandExecutionTime = threeHundredThousandEnd - threeHundredThousandStart;
-        System.out.println("Bubble sort of size 300,000: " + threeHundredThousandExecutionTime);
+        System.out.println("Bubble sort of size 300,000: " + threeHundredThousandExecutionTime + "ms");
+        bubbleSortTime300 = Long.toString(threeHundredThousandExecutionTime) + "ms";
     }
 
     private static void mergeSortArrayCreationAndExecution() {
@@ -394,59 +508,65 @@ public class Runner {
         Integer[] threeHundredThousand = new Integer[THREE_HUNDRED_THOUSAND];
 
         for (int i = 0; i < FIFTY_THOUSAND; i++) {
-            fiftyThousand[i] = random.nextInt(FIFTY_THOUSAND);
+            fiftyThousand[i] = RANDOM.nextInt(FIFTY_THOUSAND);
         }
         for (int i = 0; i < ONE_HUNDRED_THOUSAND; i++) {
-            oneHundredThousand[i] = random.nextInt(ONE_HUNDRED_THOUSAND);
+            oneHundredThousand[i] = RANDOM.nextInt(ONE_HUNDRED_THOUSAND);
         }
         for (int i = 0; i < ONE_HUNDRED_FIFTY_THOUSAND; i++) {
-            oneHundredFiftyThousand[i] = random.nextInt(ONE_HUNDRED_FIFTY_THOUSAND);
+            oneHundredFiftyThousand[i] = RANDOM.nextInt(ONE_HUNDRED_FIFTY_THOUSAND);
         }
         for (int i = 0; i < TWO_HUNDRED_THOUSAND; i++) {
-            twoHundredThousand[i] = random.nextInt(TWO_HUNDRED_THOUSAND);
+            twoHundredThousand[i] = RANDOM.nextInt(TWO_HUNDRED_THOUSAND);
         }
         for (int i = 0; i < TWO_HUNDRED_FIFTY_THOUSAND; i++) {
-            twoHundredFiftyThousand[i] = random.nextInt(TWO_HUNDRED_FIFTY_THOUSAND);
+            twoHundredFiftyThousand[i] = RANDOM.nextInt(TWO_HUNDRED_FIFTY_THOUSAND);
         }
         for (int i = 0; i < THREE_HUNDRED_THOUSAND; i++) {
-            threeHundredThousand[i] = random.nextInt(THREE_HUNDRED_THOUSAND);
+            threeHundredThousand[i] = RANDOM.nextInt(THREE_HUNDRED_THOUSAND);
         }
 
         long fiftyThousandStart = System.currentTimeMillis();
         mergeSort(fiftyThousand);
         long fiftyThousandEnd = System.currentTimeMillis();
         long fiftyThousandExecutionTime = fiftyThousandEnd - fiftyThousandStart;
-        System.out.println("Merge sort of size 50,000: " + fiftyThousandExecutionTime);
+        System.out.println("Merge sort of size 50,000: " + fiftyThousandExecutionTime + "ms");
+        mergeSortTime50 = Long.toString(fiftyThousandExecutionTime) + "ms";
 
         long oneHundredThousandStart = System.currentTimeMillis();
         mergeSort(oneHundredThousand);
         long oneHundredThousandEnd = System.currentTimeMillis();
         long oneHundredThousandExecutionTime = oneHundredThousandEnd - oneHundredThousandStart;
-        System.out.println("Merge sort of size 100,000: " + oneHundredThousandExecutionTime);
+        System.out.println("Merge sort of size 100,000: " + oneHundredThousandExecutionTime + "ms");
+        mergeSortTime100 = Long.toString(oneHundredThousandExecutionTime) + "ms";
 
         long oneHundredFiftyThousandStart = System.currentTimeMillis();
         mergeSort(oneHundredFiftyThousand);
         long oneHundredFiftyThousandEnd = System.currentTimeMillis();
         long oneHundredFiftyThousandExecutionTime = oneHundredFiftyThousandEnd - oneHundredFiftyThousandStart;
-        System.out.println("Merge sort of size 150,000: " + oneHundredFiftyThousandExecutionTime);
+        System.out.println("Merge sort of size 150,000: " + oneHundredFiftyThousandExecutionTime + "ms");
+        mergeSortTime150 = Long.toString(oneHundredFiftyThousandExecutionTime) + "ms";
 
         long twoHundredThousandStart = System.currentTimeMillis();
         mergeSort(twoHundredThousand);
         long twoHundredThousandEnd = System.currentTimeMillis();
         long twoHundredThousandExecutionTime = twoHundredThousandEnd - twoHundredThousandStart;
-        System.out.println("Merge sort of size 200,000: " + twoHundredThousandExecutionTime);
+        System.out.println("Merge sort of size 200,000: " + twoHundredThousandExecutionTime + "ms");
+        mergeSortTime200 = Long.toString(twoHundredThousandExecutionTime) + "ms";
 
         long twoHundredFiftyThousandStart = System.currentTimeMillis();
         mergeSort(twoHundredFiftyThousand);
         long twoHundredFiftyThousandEnd = System.currentTimeMillis();
         long twoHundredFiftyThousandExecutionTime = twoHundredFiftyThousandEnd - twoHundredFiftyThousandStart;
-        System.out.println("Merge sort of size 250,000: " + twoHundredFiftyThousandExecutionTime);
+        System.out.println("Merge sort of size 250,000: " + twoHundredFiftyThousandExecutionTime + "ms");
+        mergeSortTime250 = Long.toString(twoHundredFiftyThousandExecutionTime) + "ms";
 
         long threeHundredThousandStart = System.currentTimeMillis();
         mergeSort(threeHundredThousand);
         long threeHundredThousandEnd = System.currentTimeMillis();
         long threeHundredThousandExecutionTime = threeHundredThousandEnd - threeHundredThousandStart;
-        System.out.println("Merge sort of size 300,000: " + threeHundredThousandExecutionTime);
+        System.out.println("Merge sort of size 300,000: " + threeHundredThousandExecutionTime + "ms");
+        mergeSortTime300 = Long.toString(threeHundredThousandExecutionTime) + "ms";
     }
 
     private static void quickSortArrayCreationAndExecution() {
@@ -459,59 +579,65 @@ public class Runner {
         Integer[] threeHundredThousand = new Integer[THREE_HUNDRED_THOUSAND];
 
         for (int i = 0; i < FIFTY_THOUSAND; i++) {
-            fiftyThousand[i] = random.nextInt(FIFTY_THOUSAND);
+            fiftyThousand[i] = RANDOM.nextInt(FIFTY_THOUSAND);
         }
         for (int i = 0; i < ONE_HUNDRED_THOUSAND; i++) {
-            oneHundredThousand[i] = random.nextInt(ONE_HUNDRED_THOUSAND);
+            oneHundredThousand[i] = RANDOM.nextInt(ONE_HUNDRED_THOUSAND);
         }
         for (int i = 0; i < ONE_HUNDRED_FIFTY_THOUSAND; i++) {
-            oneHundredFiftyThousand[i] = random.nextInt(ONE_HUNDRED_FIFTY_THOUSAND);
+            oneHundredFiftyThousand[i] = RANDOM.nextInt(ONE_HUNDRED_FIFTY_THOUSAND);
         }
         for (int i = 0; i < TWO_HUNDRED_THOUSAND; i++) {
-            twoHundredThousand[i] = random.nextInt(TWO_HUNDRED_THOUSAND);
+            twoHundredThousand[i] = RANDOM.nextInt(TWO_HUNDRED_THOUSAND);
         }
         for (int i = 0; i < TWO_HUNDRED_FIFTY_THOUSAND; i++) {
-            twoHundredFiftyThousand[i] = random.nextInt(TWO_HUNDRED_FIFTY_THOUSAND);
+            twoHundredFiftyThousand[i] = RANDOM.nextInt(TWO_HUNDRED_FIFTY_THOUSAND);
         }
         for (int i = 0; i < THREE_HUNDRED_THOUSAND; i++) {
-            threeHundredThousand[i] = random.nextInt(THREE_HUNDRED_THOUSAND);
+            threeHundredThousand[i] = RANDOM.nextInt(THREE_HUNDRED_THOUSAND);
         }
 
         long fiftyThousandStart = System.currentTimeMillis();
         quickSort(fiftyThousand);
         long fiftyThousandEnd = System.currentTimeMillis();
         long fiftyThousandExecutionTime = fiftyThousandEnd - fiftyThousandStart;
-        System.out.println("Quick sort of size 50,000: " + fiftyThousandExecutionTime);
+        System.out.println("Quick sort of size 50,000: " + fiftyThousandExecutionTime + "ms");
+        quickSortTime50 = Long.toString(fiftyThousandExecutionTime) + "ms";
 
         long oneHundredThousandStart = System.currentTimeMillis();
         quickSort(oneHundredThousand);
         long oneHundredThousandEnd = System.currentTimeMillis();
         long oneHundredThousandExecutionTime = oneHundredThousandEnd - oneHundredThousandStart;
-        System.out.println("Quick sort of size 100,000: " + oneHundredThousandExecutionTime);
+        System.out.println("Quick sort of size 100,000: " + oneHundredThousandExecutionTime + "ms");
+        quickSortTime100 = Long.toString(oneHundredThousandExecutionTime) + "ms";
 
         long oneHundredFiftyThousandStart = System.currentTimeMillis();
         quickSort(oneHundredFiftyThousand);
         long oneHundredFiftyThousandEnd = System.currentTimeMillis();
         long oneHundredFiftyThousandExecutionTime = oneHundredFiftyThousandEnd - oneHundredFiftyThousandStart;
-        System.out.println("Quick sort of size 150,000: " + oneHundredFiftyThousandExecutionTime);
+        System.out.println("Quick sort of size 150,000: " + oneHundredFiftyThousandExecutionTime + "ms");
+        quickSortTime150 = Long.toString(fiftyThousandExecutionTime) + "ms";
 
         long twoHundredThousandStart = System.currentTimeMillis();
         quickSort(twoHundredThousand);
         long twoHundredThousandEnd = System.currentTimeMillis();
         long twoHundredThousandExecutionTime = twoHundredThousandEnd - twoHundredThousandStart;
-        System.out.println("Quick sort of size 200,000: " + twoHundredThousandExecutionTime);
+        System.out.println("Quick sort of size 200,000: " + twoHundredThousandExecutionTime + "ms");
+        quickSortTime200 = Long.toString(twoHundredThousandExecutionTime) + "ms";
 
         long twoHundredFiftyThousandStart = System.currentTimeMillis();
         quickSort(twoHundredFiftyThousand);
         long twoHundredFiftyThousandEnd = System.currentTimeMillis();
         long twoHundredFiftyThousandExecutionTime = twoHundredFiftyThousandEnd - twoHundredFiftyThousandStart;
-        System.out.println("Quick sort of size 250,000: " + twoHundredFiftyThousandExecutionTime);
+        System.out.println("Quick sort of size 250,000: " + twoHundredFiftyThousandExecutionTime + "ms");
+        quickSortTime250 = Long.toString(twoHundredFiftyThousandExecutionTime) + "ms";
 
         long threeHundredThousandStart = System.currentTimeMillis();
         quickSort(threeHundredThousand);
         long threeHundredThousandEnd = System.currentTimeMillis();
         long threeHundredThousandExecutionTime = threeHundredThousandEnd - threeHundredThousandStart;
-        System.out.println("Quick sort of size 300,000: " + threeHundredThousandExecutionTime);
+        System.out.println("Quick sort of size 300,000: " + threeHundredThousandExecutionTime + "ms");
+        quickSortTime300 = Long.toString(threeHundredThousandExecutionTime) + "ms";
     }
 
     private static void heapSortArrayCreationAndExecution() {
@@ -524,58 +650,167 @@ public class Runner {
         Integer[] threeHundredThousand = new Integer[THREE_HUNDRED_THOUSAND];
 
         for (int i = 0; i < FIFTY_THOUSAND; i++) {
-            fiftyThousand[i] = random.nextInt(FIFTY_THOUSAND);
+            fiftyThousand[i] = RANDOM.nextInt(FIFTY_THOUSAND);
         }
         for (int i = 0; i < ONE_HUNDRED_THOUSAND; i++) {
-            oneHundredThousand[i] = random.nextInt(ONE_HUNDRED_THOUSAND);
+            oneHundredThousand[i] = RANDOM.nextInt(ONE_HUNDRED_THOUSAND);
         }
         for (int i = 0; i < ONE_HUNDRED_FIFTY_THOUSAND; i++) {
-            oneHundredFiftyThousand[i] = random.nextInt(ONE_HUNDRED_FIFTY_THOUSAND);
+            oneHundredFiftyThousand[i] = RANDOM.nextInt(ONE_HUNDRED_FIFTY_THOUSAND);
         }
         for (int i = 0; i < TWO_HUNDRED_THOUSAND; i++) {
-            twoHundredThousand[i] = random.nextInt(TWO_HUNDRED_THOUSAND);
+            twoHundredThousand[i] = RANDOM.nextInt(TWO_HUNDRED_THOUSAND);
         }
         for (int i = 0; i < TWO_HUNDRED_FIFTY_THOUSAND; i++) {
-            twoHundredFiftyThousand[i] = random.nextInt(TWO_HUNDRED_FIFTY_THOUSAND);
+            twoHundredFiftyThousand[i] = RANDOM.nextInt(TWO_HUNDRED_FIFTY_THOUSAND);
         }
         for (int i = 0; i < THREE_HUNDRED_THOUSAND; i++) {
-            threeHundredThousand[i] = random.nextInt(THREE_HUNDRED_THOUSAND);
+            threeHundredThousand[i] = RANDOM.nextInt(THREE_HUNDRED_THOUSAND);
         }
 
         long fiftyThousandStart = System.currentTimeMillis();
         heapSort(fiftyThousand);
         long fiftyThousandEnd = System.currentTimeMillis();
         long fiftyThousandExecutionTime = fiftyThousandEnd - fiftyThousandStart;
-        System.out.println("Heap sort of size 50,000: " + fiftyThousandExecutionTime);
+        System.out.println("Heap sort of size 50,000: " + fiftyThousandExecutionTime + "ms");
+        heapSortTime50 = Long.toString(fiftyThousandExecutionTime) + "ms";
 
         long oneHundredThousandStart = System.currentTimeMillis();
         heapSort(oneHundredThousand);
         long oneHundredThousandEnd = System.currentTimeMillis();
         long oneHundredThousandExecutionTime = oneHundredThousandEnd - oneHundredThousandStart;
-        System.out.println("Heap sort of size 100,000: " + oneHundredThousandExecutionTime);
+        System.out.println("Heap sort of size 100,000: " + oneHundredThousandExecutionTime + "ms");
+        heapSortTime100 = Long.toString(oneHundredThousandExecutionTime) + "ms";
 
         long oneHundredFiftyThousandStart = System.currentTimeMillis();
         heapSort(oneHundredFiftyThousand);
         long oneHundredFiftyThousandEnd = System.currentTimeMillis();
         long oneHundredFiftyThousandExecutionTime = oneHundredFiftyThousandEnd - oneHundredFiftyThousandStart;
-        System.out.println("Heap sort of size 150,000: " + oneHundredFiftyThousandExecutionTime);
+        System.out.println("Heap sort of size 150,000: " + oneHundredFiftyThousandExecutionTime + "ms");
+        heapSortTime150 = Long.toString(oneHundredFiftyThousandExecutionTime) + "ms";
 
         long twoHundredThousandStart = System.currentTimeMillis();
         heapSort(twoHundredThousand);
         long twoHundredThousandEnd = System.currentTimeMillis();
         long twoHundredThousandExecutionTime = twoHundredThousandEnd - twoHundredThousandStart;
-        System.out.println("Heap sort of size 200,000: " + twoHundredThousandExecutionTime);
+        System.out.println("Heap sort of size 200,000: " + twoHundredThousandExecutionTime + "ms");
+        heapSortTime200 = Long.toString(twoHundredThousandExecutionTime) + "ms";
 
         long twoHundredFiftyThousandStart = System.currentTimeMillis();
         heapSort(twoHundredFiftyThousand);
         long twoHundredFiftyThousandEnd = System.currentTimeMillis();
         long twoHundredFiftyThousandExecutionTime = twoHundredFiftyThousandEnd - twoHundredFiftyThousandStart;
-        System.out.println("Heap sort of size 250,000: " + twoHundredFiftyThousandExecutionTime);
+        System.out.println("Heap sort of size 250,000: " + twoHundredFiftyThousandExecutionTime + "ms");
+        heapSortTime250 = Long.toString(twoHundredFiftyThousandExecutionTime) + "ms";
 
         long threeHundredThousandStart = System.currentTimeMillis();
         heapSort(threeHundredThousand);
         long threeHundredThousandEnd = System.currentTimeMillis();
         long threeHundredThousandExecutionTime = threeHundredThousandEnd - threeHundredThousandStart;
-        System.out.println("Heap sort of size 300,000: " + threeHundredThousandExecutionTime);
+        System.out.println("Heap sort of size 300,000: " + threeHundredThousandExecutionTime + "ms");
+        heapSortTime300 = Long.toString(threeHundredThousandExecutionTime) + "ms";
+    }
+
+    private static class Heap<E extends Comparable<E>> {
+
+        private ArrayList<E> list = new ArrayList<>();
+
+
+        /**
+         * Create a default heap
+         */
+        public Heap() {
+
+        }
+
+        /**
+         * Create a heap from an array of objects
+         */
+        public Heap(E[] objects) {
+
+            for (E o : objects) {
+                add(o);
+            }
+        }
+
+        /**
+         * Add a new object into the heap
+         */
+        public void add(E newObject) {
+
+            // Append to the heap
+            list.add(newObject);
+            // The index of last node
+            int currentIndex = list.size() - 1;
+
+            while (currentIndex > 0) {
+                int parentIndex = (currentIndex - 1) / 2;
+                // Swap if current object is greater than its parent
+                if (list.get(currentIndex).compareTo(list.get(parentIndex)) > 0) {
+                    E temp = list.get(currentIndex);
+                    list.set(currentIndex, list.get(parentIndex));
+                    list.set(parentIndex, temp);
+                } else {
+                    break;
+                }
+
+                currentIndex = parentIndex;
+            }
+        }
+
+        /**
+         * Remove the root from the heap
+         */
+        public E remove() {
+
+            if (list.size() == 0) {
+                return null;
+            }
+
+            E removedObject = list.get(0);
+            list.set(0, list.get(list.size() - 1));
+            list.remove(list.size() - 1);
+
+            int currentIndex = 0;
+            while (currentIndex < list.size()) {
+                int leftChildIndex = 2 * currentIndex + 1;
+                int rightChildIndex = 2 * currentIndex + 2;
+
+                // Find the max between two children
+                if (leftChildIndex >= list.size()) {
+                    // The tree is a heap
+                    break;
+                }
+                int maxIndex = leftChildIndex;
+                if (rightChildIndex < list.size()) {
+                    // Compare two children
+                    if (list.get(maxIndex).compareTo(list.get(rightChildIndex)) < 0) {
+                        maxIndex = rightChildIndex;
+                    }
+                }
+
+                if (list.get(currentIndex).compareTo(list.get(maxIndex)) < 0) {
+                    E temp = list.get(maxIndex);
+                    // Swap with larger child
+                    list.set(maxIndex, list.get(currentIndex));
+                    list.set(currentIndex, temp);
+                    currentIndex = maxIndex;
+                } else {
+                    // The tree is a heap
+                    break;
+                }
+            }
+
+            return removedObject;
+        }
+
+        /**
+         * Get the number of nodes in the tree
+         */
+        public int getSize() {
+
+            return list.size();
+
+        }
     }
 }
