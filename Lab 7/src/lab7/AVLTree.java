@@ -267,6 +267,10 @@ public class AVLTree<E extends Comparable<E>> extends BST<E> {
 
     public E find(int k, AVLTreeNode<E> root) {
         AVLTreeNode<E> node = root;
+
+        E min = null;
+
+        return min;
     }
 
     /**

@@ -1,6 +1,7 @@
 package hw6;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -713,7 +714,7 @@ public class Main {
 
     private static class Heap<E extends Comparable<E>> {
 
-        private ArrayList<E> list = new ArrayList<>();
+        private List<E> list = new ArrayList<>();
 
 
         /**
