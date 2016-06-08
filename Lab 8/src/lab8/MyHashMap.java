@@ -15,7 +15,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     // Define default load factor
     private static float DEFAULT_MAX_LOAD_FACTOR = 0.75f;
     // The number of entries in the map
-    LinkedList<MyMap.Entry<K, V>>[] table;
+    private LinkedList<MyMap.Entry<K, V>>[] table;
     // Current hash-table capacity. Capacity is a power of 2
     private int capacity;
     // Specify a load factor used in the hash table
@@ -42,8 +42,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
     /**
      * Construct a map with the specified initial capacity
      * and load factor
-     */
-    public MyHashMap(int initialCapacity, float loadFactorThreshold) {
+     */ private MyHashMap(int initialCapacity, float loadFactorThreshold) {
         if (initialCapacity > MAXIMIUM_CAPACITY) {
             this.capacity = MAXIMIUM_CAPACITY;
         } else {
@@ -247,6 +246,7 @@ public class MyHashMap<K, V> implements MyMap<K, V> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     // Rehash the map
     private void rehash() {
 

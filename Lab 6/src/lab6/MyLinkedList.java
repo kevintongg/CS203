@@ -1,5 +1,7 @@
 package lab6;
 
+import java.util.Iterator;
+
 public class MyLinkedList<E> extends MyAbstractList<E> {
 
     private Node<E> head;
@@ -24,7 +26,7 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
                 current = current.next;
             }
             Node<E> temp = current.next;
-            current.next = new Node<E>(e);
+            current.next = new Node<>(e);
             (current.next).next = temp;
         }
     }
@@ -197,6 +199,7 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     /** Replace the element at the specified position
      * in this list with the specified element. */
     public E set(int index, E e) {
@@ -208,7 +211,7 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
 
     @Override
     /** Override iterator() defined in Iterable */
-    public java.util.Iterator<E> iterator() {
+    public Iterator<E> iterator() {
         return new LinkedListIterator();
     }
 
@@ -227,7 +230,7 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
         }
     }
 
-    private class LinkedListIterator implements java.util.Iterator<E> {
+    private class LinkedListIterator implements Iterator<E> {
 
         private Node<E> current = head; // current index
         private boolean remove;
