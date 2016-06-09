@@ -16,6 +16,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Euclidean Algorithm" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Prime Number" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Tree" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/Sorts" isTestSource="true" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
