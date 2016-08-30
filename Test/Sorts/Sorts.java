@@ -36,7 +36,7 @@ public class Sorts {
             for (j = i - 1; j >= 0 && currentItem.compareTo(list[j]) < 1; j--) {
                 list[j + 1] = list[j];
             }
-            // Insert the current element into list[k + 1]
+            // Insert the current element into list[j + 1]
             list[j + 1] = currentItem;
         }
     }
