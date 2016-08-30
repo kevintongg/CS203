@@ -32,8 +32,7 @@ public class Sorts {
              *
              */
             E currentItem = list[i];
-            int j;
-            for (j = i - 1; j >= 0 && currentItem.compareTo(list[j]) < 1; j--) {
+            for (int j = i - 1; j >= 0 && currentItem.compareTo(list[j]) < 1; j--) {
                 list[j + 1] = list[j];
             }
             // Insert the current element into list[j + 1]
