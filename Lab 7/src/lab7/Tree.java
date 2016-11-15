@@ -3,49 +3,49 @@ package lab7;
 
 public interface Tree<E> extends Iterable<E> {
 
-    /**
-     * Return true if the element is in the tree
-     */
-    boolean search(E e);
+  /**
+   * Return true if the element is in the tree
+   */
+  boolean search(E e);
 
-    /**
-     * Insert element o into the binary tree
-     * Return true if the element is inserted successfully
-     */
-    boolean insert(E e);
+  /**
+   * Insert element o into the binary tree
+   * Return true if the element is inserted successfully
+   */
+  boolean insert(E e);
 
-    /**
-     * Delete the specified element from the tree
-     * Return true if the element is deleted successfully
-     */
-    boolean delete(E e);
+  /**
+   * Delete the specified element from the tree
+   * Return true if the element is deleted successfully
+   */
+  boolean delete(E e);
 
-    /**
-     * Inorder traversal from the root
-     */
-    void inorder();
+  /**
+   * Inorder traversal from the root
+   */
+  void inorder();
 
-    /**
-     * Postorder traversal from the root
-     */
-    void postorder();
+  /**
+   * Postorder traversal from the root
+   */
+  void postorder();
 
-    /**
-     * Preorder traversal from the root
-     */
-    void preorder();
+  /**
+   * Preorder traversal from the root
+   */
+  void preorder();
 
-    /**
-     * Get the number of nodes in the tree
-     */
-    int getSize();
+  /**
+   * Get the number of nodes in the tree
+   */
+  int getSize();
 
-    /**
-     * Return true if the tree is empty
-     */
-    boolean isEmpty();
+  /**
+   * Return true if the tree is empty
+   */
+  boolean isEmpty();
 
-    //
-    //  /** Return an iterator to traverse elements in the tree */
-    java.util.Iterator<E> iterator();
+  //
+  //  /** Return an iterator to traverse elements in the tree */
+  java.util.Iterator<E> iterator();
 }

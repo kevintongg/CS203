@@ -1,6 +1,6 @@
 public class Factorial {
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
         /*
         *
@@ -16,24 +16,24 @@ public class Factorial {
 
 //        long x = fact(5);
 
-        int n = 5;
-        long sum = 1;
+    int n = 5;
+    long sum = 1;
 
-        for (int i = 0; i < n; i++) {
-            sum = sum * i;
-        }
-
+    for (int i = 0; i < n; i++) {
+      sum = sum * i;
     }
 
+  }
 
-    public static long fact(int n) {
 
-        // base case
-        if (n == 0 || n == 1) {
-            return 1;
-        } else {
-            // recursive call
-            return n * fact(n - 1);
-        }
+  public static long fact(int n) {
+
+    // base case
+    if (n == 0 || n == 1) {
+      return 1;
+    } else {
+      // recursive call
+      return n * fact(n - 1);
     }
+  }
 }

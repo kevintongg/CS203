@@ -3,18 +3,18 @@
  */
 public class TreeNode<E> {
 
-    TreeNode(E e) {
+  TreeNode(E e) {
 
-    }
+  }
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
-    }
+  }
 
-    private void Test() {
+  private void Test() {
 
-        E element;
-        TreeNode<E> left;
-        TreeNode<E> right;
-    }
+    E element;
+    TreeNode<E> left;
+    TreeNode<E> right;
+  }
 }

@@ -6,24 +6,24 @@ import javafx.stage.Stage;
 
 public class JavaFXTest extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+  public static void main(String[] args) {
+    launch(args);
+  }
 
-    @Override
-    public void start(Stage primaryStage) {
+  @Override
+  public void start(Stage primaryStage) {
 
-        StackPane pane = new StackPane();
-        Button button = new Button("Hello World!");
+    StackPane pane = new StackPane();
+    Button button = new Button("Hello World!");
 
-        pane.getChildren().addAll(button);
+    pane.getChildren().addAll(button);
 
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(new Scene(pane));
-        primaryStage.show();
+    primaryStage.setTitle("Hello World!");
+    primaryStage.setScene(new Scene(pane));
+    primaryStage.show();
 
-        button.setOnAction(e -> {
-            button.setText("Hello!");
-        });
-    }
+    button.setOnAction(e -> {
+      button.setText("Hello!");
+    });
+  }
 }

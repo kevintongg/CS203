@@ -1,6 +1,6 @@
 public class FibonacciSequence {
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
         /*
         *
@@ -13,19 +13,19 @@ public class FibonacciSequence {
         *
         * */
 
-        long x = fibonacci(20);
-        System.out.println(x);
+    long x = fibonacci(20);
+    System.out.println(x);
 
+  }
+
+  public static long fibonacci(int n) {
+
+    // base case
+    if (n == 0 || n == 1) {
+      return 1;
+    } else {
+      // recursive call
+      return fibonacci(n - 1) + fibonacci(n - 2);
     }
-
-    public static long fibonacci(int n) {
-
-        // base case
-        if (n == 0 || n == 1) {
-            return 1;
-        } else {
-            // recursive call
-            return fibonacci(n - 1) + fibonacci(n - 2);
-        }
-    }
+  }
 }

@@ -6,21 +6,21 @@ import javafx.stage.Stage;
 
 public class TestFX extends Application {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+  public static void main(String[] args) {
+    launch(args);
+  }
 
-    @Override
-    public void start(Stage primaryStage) {
+  @Override
+  public void start(Stage primaryStage) {
 
-        StackPane pane = new StackPane();
-        Text text = new Text("Hello /dpt!/");
+    StackPane pane = new StackPane();
+    Text text = new Text("Hello /dpt!/");
 
-        pane.getChildren().add(text);
+    pane.getChildren().add(text);
 
-        Scene scene = new Scene(pane, 250, 250);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    Scene scene = new Scene(pane, 250, 250);
+    primaryStage.setScene(scene);
+    primaryStage.show();
 
-    }
+  }
 }
